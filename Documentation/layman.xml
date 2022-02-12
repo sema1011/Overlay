@@ -1,0 +1,10 @@
+<layman>
+    <overlay type="git" src="https://github.com/sema1011/overlay.git" contact="https://github.com/sema1011" status="unofficial" name="overlay">
+	<link>
+	https://github.com/sema1011/overlay
+	</link>
+	<description>
+	hz
+	</description>
+    </overlay>
+</layman>
