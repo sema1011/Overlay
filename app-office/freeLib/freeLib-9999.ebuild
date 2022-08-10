@@ -13,6 +13,7 @@ if [[ ${PV} == *9999* ]]; then
 	EGIT_REPO_URI="https://github.com/petrovvlad/freeLib.git"
 	EGIT_SUBMODULES=('*')
 	inherit git-r3
+	KEYWORDS="~amd64 ~x86"
 else
 	SRC_URI="https://github.com/petrovvlad/freeLib/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
