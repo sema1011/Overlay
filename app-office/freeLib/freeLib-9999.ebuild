@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake xdg
+inherit flag-o-matic cmake xdg
 
 DESCRIPTION="Home library with librusec/flibusta support"
 HOMEPAGE="https://github.com/petrovvlad/freeLib"
@@ -46,5 +46,6 @@ CMAKE_USE_DIR="${WORKDIR}/${P}/"
 
 src_configure() {
 	CMAKE_BUILD_TYPE='Release'
+	append-flags -Wa,--noexecstack
 	cmake_src_configure
 }
