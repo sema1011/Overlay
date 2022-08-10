@@ -11,7 +11,6 @@ HOMEPAGE="https://github.com/petrovvlad/freeLib"
 
 if [[ ${PV} == *9999* ]]; then
 	EGIT_REPO_URI="https://github.com/petrovvlad/freeLib.git"
-	EGIT_SUBMODULES=('*')
 	inherit git-r3
 	KEYWORDS="~amd64 ~x86"
 else
@@ -34,6 +33,7 @@ RDEPEND="
 	>=dev-qt/qtnetwork-5.15:5
 	>=dev-qt/qtwidgets-5.15:5
 	>=dev-libs/quazip-1.2
+	=net-mail/SmtpClient-for-Qt-9999
 "
 DEPEND="${RDEPEND}
 "
