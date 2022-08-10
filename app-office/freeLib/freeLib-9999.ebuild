@@ -33,7 +33,6 @@ RDEPEND="
 	>=dev-qt/qtnetwork-5.15:5
 	>=dev-qt/qtwidgets-5.15:5
 	>=dev-libs/quazip-1.2
-	=net-mail/SmtpClient-for-Qt-9999
 "
 DEPEND="${RDEPEND}
 "
