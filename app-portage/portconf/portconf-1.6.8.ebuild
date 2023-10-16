@@ -1,7 +1,7 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="/etc/portage cleaner"
 HOMEPAGE="https://github.com/megabaks/portconf"
@@ -19,7 +19,7 @@ RDEPEND="${DEPEND}
 		app-portage/eix
 		app-portage/portage-utils
 		sys-apps/gawk
-		app-text/agrep"
+		sys-apps/grep"
 
 src_install(){
 	insinto /etc/

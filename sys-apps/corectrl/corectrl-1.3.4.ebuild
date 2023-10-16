@@ -14,7 +14,7 @@ if [[ ${PV} == 9999 ]] ; then
 else
 	SRC_URI="https://gitlab.com/${PN}/${PN}/-/archive/v${PV}/${PN}-v${PV}.tar.gz"
 	KEYWORDS="~amd64 ~arm64 ~x86"
-	S="${WORKDIR}/${PN}-v${PV}"
+	S="${WORKDIR}/${PN}-${PV}"
 fi
 
 LICENSE="MIT"
@@ -43,10 +43,17 @@ BDEPEND="
 
 CONFIG_CHECK="~CONNECTOR ~NETLINK_DIAG"
 
+#BUILD_DIR="${S}/${PN}-${PV}/build"
+#CMAKE_USE_DIR="${S}/${PN}-${PV}/"
+
 src_configure() {
 	local mycmakeargs=(
 		-DWITH_PCI_IDS_PATH=/usr/share/misc/pci.ids
 	)
+	CMAKE_BUILD_TYPE='Release'
 	ecm_src_configure
+	
+
 }
+
  
