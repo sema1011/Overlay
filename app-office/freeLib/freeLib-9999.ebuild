@@ -50,7 +50,6 @@ RDEPEND="
 	>=dev-qt/qtbase-6.5:6=[gui,network,opengl,widgets,X?]
 	>=dev-qt/qtimageformats-6.5:6
 	>=dev-qt/qtsvg-6.5:6
-	>=dev-qt/qthttpserver-6.6.0
 	qt6-imageformats? (
 		>=dev-qt/qtimageformats-6.5:6=
 		${KIMAGEFORMATS_RDEPEND}
@@ -68,6 +67,9 @@ CMAKE_USE_DIR="${WORKDIR}/${P}/"
 
 src_configure() {
 	CMAKE_BUILD_TYPE='Release'
+	local mycmakeargs=(
+		-DQT6=$(usex qt6)
+	)
 	append-flags -Wa,--noexecstack
 	cmake_src_configure
 }
