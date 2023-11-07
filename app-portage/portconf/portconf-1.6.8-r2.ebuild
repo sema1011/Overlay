@@ -13,16 +13,25 @@ KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 IUSE=""
 RESTRICT="mirror"
 
-DEPEND="app-shells/bash:=
-		sys-apps/portage"
+DEPEND="
+	app-shells/bash:=
+	sys-apps/portage
+"
 RDEPEND="${DEPEND}
-		app-portage/eix
-		app-portage/portage-utils
-		sys-apps/gawk
-		sys-apps/grep"
+	app-portage/eix
+	app-portage/portage-utils
+	sys-apps/gawk
+	sys-apps/grep
+"
+
+PATCHES=(
+        "${FILESDIR}/fix_grep.patch"
+)
 
 src_install(){
+	default
+
 	insinto /etc/
 	newins portconf.conf portconf.conf
-	dosbin portconf
+	dobin portconf
 }
