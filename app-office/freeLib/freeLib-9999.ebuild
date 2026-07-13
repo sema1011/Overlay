@@ -22,42 +22,28 @@ fi
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="X qt6 qt6-imageformats"
+
+IUSE="
+"
 REQUIRED_USE="
-	qt6-imageformats? ( qt6 )
 "
 
-KIMAGEFORMATS_RDEPEND="
-	media-libs/libavif:=
-	media-libs/libheif:=
-	media-libs/libjxl
-"
 CDEPEND="
 "
+
 RDEPEND="
-	>=dev-libs/quazip-1.2
-	!qt6? (
-	>=dev-qt/qtcore-5.15:5=
-	>=dev-qt/qtsql-5.15:5
-	>=dev-qt/qtgui-5.15:5=[jpeg,png,X?]
-	>=dev-qt/qtimageformats-5.15:5
-	>=dev-qt/qtxml-5.15:5
-	>=dev-qt/qtnetwork-5.15:5[ssl]
-	>=dev-qt/qtsvg-5.15:5
-	>=dev-qt/qtwidgets-5.15:5[png,X?]
-	)
-	qt6? (
 	>=dev-qt/qtbase-6.5:6=[gui,network,opengl,widgets,X?]
-	>=dev-qt/qtimageformats-6.5:6
+	>=dev-qt/qthttpserver-6.5:6=[websockets]
 	>=dev-qt/qtsvg-6.5:6
-	qt6-imageformats? (
-		>=dev-qt/qtimageformats-6.5:6=
-		${KIMAGEFORMATS_RDEPEND}
-		)
-	)
+	>=dev-libs/quazip-1.5
+	dev-cpp/tbb
+	dev-libs/qtkeychain
+	>=app-arch/libarchive-3.8.7
 "
+
 DEPEND="${RDEPEND}
 "
+
 BDEPEND="
 	${PYTHON_DEPS}
 	>=dev-util/cmake-3.16
@@ -68,7 +54,7 @@ CMAKE_USE_DIR="${WORKDIR}/${P}/"
 src_configure() {
 	CMAKE_BUILD_TYPE='Release'
 	local mycmakeargs=(
-		-DQT6=$(usex qt6)
+	
 	)
 	append-flags -Wa,--noexecstack
 	cmake_src_configure
