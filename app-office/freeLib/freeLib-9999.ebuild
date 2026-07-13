@@ -31,13 +31,19 @@ CDEPEND="
 "
 
 RDEPEND="
-	>=dev-qt/qtbase-6.5:6
+	>=dev-qt/qtbase-6.5:6=[gui,widgets,xml,dbus,network,sql]
 	>=dev-qt/qthttpserver-6.5:6=[websockets]
 	>=dev-qt/qtsvg-6.5:6
 	>=dev-libs/quazip-1.5
 	dev-cpp/tbb
 	dev-libs/qtkeychain
 	>=app-arch/libarchive-3.8.7
+	app-text/djvu
+	app-text/poppler
+	kde-frameworks/kio
+	kde-frameworks/kstatusnotifieritem
+
+
 "
 
 DEPEND="${RDEPEND}
