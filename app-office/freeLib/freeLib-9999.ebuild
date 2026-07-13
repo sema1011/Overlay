@@ -1,4 +1,4 @@
-# Copyright 2020-2023 Gentoo Authors
+# Copyright 2020-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -45,7 +45,7 @@ DEPEND="${RDEPEND}
 
 BDEPEND="
 	${PYTHON_DEPS}
-	>=dev-util/cmake-3.16
+	>=dev-build/cmake-4.1.4
 "
 BUILD_DIR="${WORKDIR}/${P}/freeLib/build"
 CMAKE_USE_DIR="${WORKDIR}/${P}/"
