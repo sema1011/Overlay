@@ -23,8 +23,7 @@ fi
 LICENSE="GPL-3"
 SLOT="0"
 
-IUSE="
-"
+IUSE=""
 REQUIRED_USE="
 "
 
@@ -32,7 +31,7 @@ CDEPEND="
 "
 
 RDEPEND="
-	>=dev-qt/qtbase-6.5:6=[gui,network,opengl,widgets,X?]
+	>=dev-qt/qtbase-6.5:6
 	>=dev-qt/qthttpserver-6.5:6=[websockets]
 	>=dev-qt/qtsvg-6.5:6
 	>=dev-libs/quazip-1.5
