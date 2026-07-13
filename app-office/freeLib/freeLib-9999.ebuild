@@ -42,8 +42,6 @@ RDEPEND="
 	app-text/poppler
 	kde-frameworks/kio
 	kde-frameworks/kstatusnotifieritem
-
-
 "
 
 DEPEND="${RDEPEND}
