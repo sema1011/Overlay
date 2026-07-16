@@ -15,13 +15,14 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
 QTMIN=6.10.3
-IUSE="djvu"
+IUSE="djvu tbb"
 
 RDEPEND="
 	>=dev-qt/qtbase-${QTMIN}:6=[gui,widgets,xml,dbus,network,sql]
 	>=dev-qt/qthttpserver-${QTMIN}:6=[websockets]
 	>=dev-qt/qtsvg-${QTMIN}:6
 	dev-libs/quazip
+	tbb? ( >=dev-cpp/tbb-2022.1.0:=[${MULTILIB_USEDEP}] )
 	dev-cpp/tbb
 	dev-libs/qtkeychain
 	app-arch/libarchive
@@ -40,6 +41,7 @@ src_configure() {
 	CMAKE_BUILD_TYPE='Release'
 	local mycmakeargs=(
 			$(cmake_use_find_package djvu DjVuLibre)
+			$(cmake_use_find_package tbb TBB)
 		)
 	cmake_src_configure
 }
