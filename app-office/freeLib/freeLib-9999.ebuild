@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake git-r3
+inherit cmake xdg-utils git-r3
 
 DESCRIPTION="Home library with librusec/flibusta support"
 HOMEPAGE="https://github.com/petrovvlad/freeLib"
@@ -43,4 +43,8 @@ src_configure() {
 			$(cmake_use_find_package tbb TBB)
 		)
 	cmake_src_configure
+}
+
+pkg_postinst () {
+	xdg_icon_cache_update
 }
