@@ -22,8 +22,7 @@ RDEPEND="
 	>=dev-qt/qthttpserver-${QTMIN}:6=[websockets]
 	>=dev-qt/qtsvg-${QTMIN}:6
 	dev-libs/quazip
-	tbb? ( >=dev-cpp/tbb-2022.1.0:=[${MULTILIB_USEDEP}] )
-	dev-cpp/tbb
+	tbb? ( >=dev-cpp/tbb-2022.1.0:= )
 	dev-libs/qtkeychain
 	app-arch/libarchive
 	djvu? ( app-text/djvu:= )
