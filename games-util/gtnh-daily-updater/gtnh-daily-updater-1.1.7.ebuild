@@ -7,7 +7,7 @@ inherit go-module
 
 DESCRIPTION="Updates daily and experimental GTNH packs to the latest version"
 HOMEPAGE="https://github.com/Caedis/gtnh-daily-updater"
-LICENSE="GPL-3"
+LICENSE=""
 
 SRC_URI="https://github.com/Caedis/${PN}/archive/refs/tags/1.1.7.tar.gz -> ${P}.tar.gz"
 SRC_URI+=" https://github.com/sema1011/Dep/raw/refs/heads/main/${P}-deps.tar.xz"
@@ -18,15 +18,17 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="
-	dev-lang/go
+	>=dev-lang/go-1.25.6
 "
 
 DEPEND="${RDEPEND}"
 
 src_compile() {
-        emake GOFLAGS="${GOFLAGS}" build
+    ego build
 }
 
 src_install() {
-        dobin execs/${PN}
+    dobin gtnh-daily-updater
+
+    default
 }
