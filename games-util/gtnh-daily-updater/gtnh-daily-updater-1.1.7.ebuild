@@ -24,11 +24,9 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 src_compile() {
-    ego build
+        emake GOFLAGS="${GOFLAGS}" build
 }
 
 src_install() {
-    dobin gtnh-daily-updater
-
-    default
+        dobin execs/${PN}
 }
