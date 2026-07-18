@@ -19,6 +19,7 @@ IUSE=""
 
 RDEPEND="
 	>=dev-lang/go-1.25.6
+        >=dev-vcs/git-2.52.0
 "
 
 DEPEND="${RDEPEND}"
