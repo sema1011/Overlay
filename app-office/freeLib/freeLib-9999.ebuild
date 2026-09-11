@@ -48,3 +48,7 @@ src_configure() {
 pkg_postinst () {
 	xdg_icon_cache_update
 }
+
+pkg_prerm() {
+    xdg_icon_cache_update
+}
