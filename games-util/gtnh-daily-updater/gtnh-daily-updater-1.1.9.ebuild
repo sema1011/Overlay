@@ -7,7 +7,8 @@ inherit go-module
 
 DESCRIPTION="Updates daily and experimental GTNH packs to the latest version"
 HOMEPAGE="https://github.com/Caedis/gtnh-daily-updater"
-LICENSE=""
+#LICENSE=""
+LICENSE="unknown"
 
 SRC_URI="https://github.com/Caedis/${PN}/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 SRC_URI+=" https://github.com/sema1011/Dep/raw/refs/heads/main/${P}-deps.tar.xz"
