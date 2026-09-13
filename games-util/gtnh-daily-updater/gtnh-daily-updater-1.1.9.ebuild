@@ -19,7 +19,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="
-	dev-lang/go
+	>=dev-lang/go-1.25.6
     dev-vcs/git
 "
 
