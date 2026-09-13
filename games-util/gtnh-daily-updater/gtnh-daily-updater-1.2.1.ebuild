@@ -19,8 +19,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="
-	>=dev-lang/go-1.25.6
-    >=dev-vcs/git-2.52.0
+	dev-lang/go
+    dev-vcs/git
 "
 
 DEPEND="${RDEPEND}"
