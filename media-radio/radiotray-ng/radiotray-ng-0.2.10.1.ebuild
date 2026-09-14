@@ -1,60 +1,49 @@
 EAPI=8
-inherit cmake
+inherit cmake xdg-utils
 
-# xdg-utils
 DESCRIPTION="An Internet radio player"
 HOMEPAGE="https://github.com/ebruck/radiotray-ng"
 SRC_URI="https://github.com/ebruck/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="GPL-3.0-only"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="test shibboleth appindicator ncurses curl"
+IUSE="test"
+
 IUSE_DESCRIPTION="\
     test: Build and run tests (requires a test framework)\n\
-    shibboleth: Support for Shibboleth authentication\n\
-    appindicator: Use AppIndicator to create system tray icons\n\
-    ncurses: Enable support for console mode\n\
-    curl: Require CURL library for network requests"
-RESTRICT=""
-
+    "
 RDEPEND="
     dev-libs/jsoncpp
     media-libs/gstreamer
+    media-plugins/gst-plugins-meta
     dev-libs/libxdg-basedir
     dev-libs/libbsd
-	appindicator? ( dev-libs/libappindicator:= )
+	dev-libs/libayatana-appindicator
     x11-libs/libnotify
     dev-cpp/glibmm
-    dev-cpp/giomm
-    x11-libs/wxGTK:3.0-gtk3
+    x11-libs/wxGTK
     sys-apps/lsb-release
-    ncurses? ( dev-libs/ncurses:= )
-    curl? ( net-misc/curl:= )
+    sys-libs/ncurses
+    net-misc/curl
 "
 DEPEND="${RDEPEND}
 "
-
 src_prepare() {
+    cmake_src_prepare
     cd "${S}" || return 1
-    # Extract source code
-    tar xjf ${P}.tar.bz2
+    find "${S}" -name "*.gz" -o -name "*changelog*" -exec rm {} \; 2>/dev/null || true
+    eapply_user
 }
 
 src_configure() {
-    local USE="$1"
-    local OPTIONS=""
-    if use appindicator; then
-        OPTIONS+=" -DWITH_APPINDICATOR=ON "
-    fi
-    if use ncurses; then
-        OPTIONS+=" -DWITH_NCURSES=ON "
-    fi
-    if use curl; then
-        OPTIONS+=" -DCURL_LIBRARY=libcurl \
-                   -DCURL_INCLUDEDIR=/usr/include/curl \
-                  "
-    fi
+    CMAKE_BUILD_TYPE='Release'
+#	local mycmakeargs=(
+#		-DBUILD_TESTING="$(usex test)"
+#	)
+    cmake_src_configure 
+}
 
-    cmake_src_configure "-DWITH_SHIBBOLETH=${USE_shibboleth:-OFF} \
-                        -DBUILD_TESTING=${USE_test:=-OFF}" "${OPTIONS}" .
+pkg_postinst () {
+    xdg_icon_cache_update
+    rm -f /etc/xdg/autostart/radiotray-ng.desktop
 }
