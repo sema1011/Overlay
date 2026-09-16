@@ -1,4 +1,4 @@
-# Copyright 2020-2016 Gentoo Foundation
+# Copyright 2024 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -7,8 +7,7 @@ inherit go-module
 
 DESCRIPTION="Updates daily and experimental GTNH packs to the latest version"
 HOMEPAGE="https://github.com/Caedis/gtnh-daily-updater"
-#LICENSE=""
-LICENSE="unknown"
+LICENSE="GPL-2.0-or-later"
 
 SRC_URI="https://github.com/Caedis/${PN}/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 SRC_URI+=" https://github.com/sema1011/Dep/raw/refs/heads/main/${P}-deps.tar.xz"
@@ -16,21 +15,19 @@ SRC_URI+=" https://github.com/sema1011/Dep/raw/refs/heads/main/${P}-deps.tar.xz"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE=""
-
-RDEPEND="
-	>=dev-lang/go-1.25.6
-    dev-vcs/git
+# Go компилирует статические бинарники — go нужен только для сборки
+BDEPEND="
+    >=dev-lang/go-1.25.6
 "
 
-DEPEND="${RDEPEND}"
+# git нужен в рантайме — инструмент работает с git-репозиториями модпаков
+RDEPEND="dev-vcs/git"
 
 src_compile() {
-    ego build
+	ego build -o gtnh-daily-updater .
 }
 
 src_install() {
-    dobin gtnh-daily-updater
-
-    default
+	dobin gtnh-daily-updater
+	default
 }
