@@ -1,54 +1,42 @@
-# Copyright 2020-2026 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
-inherit cmake xdg-utils git-r3
+inherit cmake git-r3 xdg
 
-DESCRIPTION="Home library with librusec/flibusta support"
+DESCRIPTION="Cataloger for LibRusEc and Flibusta book libraries"
 HOMEPAGE="https://github.com/petrovvlad/freeLib"
+
+EGIT_REPO_URI="https://github.com/petrovvlad/freeLib.git"
+EGIT_BRANCH="master"
+# Клонируем только SmtpClient — для него нет системного аналога.
+# quazip берём из системы (dev-libs/quazip).
+EGIT_SUBMODULES=( '*' )
+
 LICENSE="GPL-3"
-
-EGIT_REPO_URI="https://github.com/petrovvlad/${PN}.git"
-
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
+IUSE="djvu"
 
-QTMIN=6.10.3
-IUSE="djvu tbb"
-
-RDEPEND="
-	>=dev-qt/qtbase-${QTMIN}:6=[gui,widgets,xml,dbus,network,sql]
-	>=dev-qt/qthttpserver-${QTMIN}:6=[websockets]
-	>=dev-qt/qtsvg-${QTMIN}:6
+DEPEND="
 	dev-libs/quazip
-	tbb? ( >=dev-cpp/tbb-2022.1.0:= )
 	dev-libs/qtkeychain
+	dev-cpp/tbb
 	app-arch/libarchive
-	djvu? ( app-text/djvu:= )
-	app-text/poppler
-	kde-frameworks/kio
-	kde-frameworks/kstatusnotifieritem
+	dev-qt/qtbase:6=[gui,widgets,network,sqlite]
+	dev-qt/qtsvg:6
+	dev-qt/qtwebsockets:6
+	dev-qt/qthttpserver:6
+	dev-qt/qt5compat:6
+	djvu? ( app-text/djvu )
 "
-
-DEPEND="${RDEPEND}"
-
-BUILD_DIR="${WORKDIR}/${P}/freeLib/build"
-CMAKE_USE_DIR="${WORKDIR}/${P}/"
+RDEPEND="${DEPEND}"
+BDEPEND="dev-qt/qttools:6"
 
 src_configure() {
-	CMAKE_BUILD_TYPE='Release'
 	local mycmakeargs=(
-			$(cmake_use_find_package djvu DjVuLibre)
-			$(cmake_use_find_package tbb TBB)
-		)
+		-DCMAKE_BUILD_TYPE=Release
+	)
 	cmake_src_configure
-}
-
-pkg_postinst () {
-	xdg_icon_cache_update
-}
-
-pkg_prerm() {
-    xdg_icon_cache_update
 }

@@ -4,7 +4,7 @@ inherit cmake xdg-utils
 DESCRIPTION="An Internet radio player"
 HOMEPAGE="https://github.com/ebruck/radiotray-ng"
 SRC_URI="https://github.com/ebruck/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-LICENSE="GPL-3.0-only"
+LICENSE="GPL-3.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="test"
