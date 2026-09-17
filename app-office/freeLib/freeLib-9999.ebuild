@@ -10,8 +10,6 @@ HOMEPAGE="https://github.com/petrovvlad/freeLib"
 
 EGIT_REPO_URI="https://github.com/petrovvlad/freeLib.git"
 EGIT_BRANCH="master"
-# Клонируем только SmtpClient — для него нет системного аналога.
-# quazip берём из системы (dev-libs/quazip).
 EGIT_SUBMODULES=( '*' )
 
 LICENSE="GPL-3"

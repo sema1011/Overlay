@@ -1,0 +1,60 @@
+diff -ruN CMakeLists.txt CMakeLists.txt
+--- CMakeLists.txt	2025-11-01 20:41:01.000000000 +0300
++++ CMakeLists.txt	2026-09-17 23:48:32.184375456 +0300
+@@ -56,10 +56,10 @@
+ endif(NOT APPLE)
+ 
+ # flags
+-set(CMAKE_CXX_STANDARD 14)
++set(CMAKE_CXX_STANDARD 17)
+ add_definitions("-DBOOST_LOG_DYN_LINK")
+ add_compile_options("-fdiagnostics-color=auto")
+-set(warnings "-Wall -Wextra -Werror -Wpedantic -Wno-deprecated-declarations")
++set(warnings "-Wall -Wextra  -Wpedantic -Wno-deprecated-declarations")
+ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${warnings}")
+ set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS} ${warnings}")
+ set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
+@@ -72,7 +72,7 @@
+ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
+     pkg_search_module(APPINDICATOR appindicator3-0.1)
+     if (NOT APPINDICATOR_FOUND)
+-        pkg_search_module(APPINDICATOR REQUIRED ayatana-appindicator3-0.1)
++        pkg_search_module(APPINDICATOR ayatana-appindicator3-0.1)
+         if (APPINDICATOR_FOUND)
+             set(AYATANA_APPINDICATOR true CACHE BOOL "ayatana-appindicator")
+         endif()
+@@ -81,8 +81,8 @@
+     pkg_search_module(NCURSES      REQUIRED ncurses)
+ endif()
+     pkg_search_module(NOTIFY       REQUIRED libnotify)
+-    pkg_search_module(GLIBMM       REQUIRED glibmm-2.4)
+-    pkg_search_module(GIOMM        REQUIRED giomm-2.4)
++    pkg_search_module(GLIBMM       REQUIRED glibmm-2.68)
++    pkg_search_module(GIOMM        REQUIRED giomm-2.68)
+ else()
+     set(NCURSES_FOUND true)
+     set(NCURSES_LIBRARIES ncurses)
+diff -ruN cmake/user-agent.cmake cmake/user-agent.cmake
+--- cmake/user-agent.cmake	2025-11-01 20:41:01.000000000 +0300
++++ cmake/user-agent.cmake	2026-09-17 23:48:32.191293937 +0300
+@@ -26,7 +26,7 @@
+ set(RTNG_GIT_VERSION "")
+ 
+ if (GIT_EXECUTABLE)
+-    execute_process(COMMAND git describe --tags --dirty OUTPUT_VARIABLE RTNG_GIT_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
++    #execute_process(COMMAND git describe --tags --dirty OUTPUT_VARIABLE RTNG_GIT_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
+ endif()
+ 
+ if (NOT RTNG_GIT_VERSION)
+diff -ruN src/radiotray-ng/extras/rtng_dbus/rtng_dbus.cpp src/radiotray-ng/extras/rtng_dbus/rtng_dbus.cpp
+--- src/radiotray-ng/extras/rtng_dbus/rtng_dbus.cpp	2025-11-01 20:41:01.000000000 +0300
++++ src/radiotray-ng/extras/rtng_dbus/rtng_dbus.cpp	2026-09-17 23:48:32.189319114 +0300
+@@ -269,7 +269,7 @@
+ 		return;
+ 	}
+ 
+-	this->own_name_id = Gio::DBus::own_name(Gio::DBus::BusType::BUS_TYPE_SESSION, RTNG_DBUS_NAME,
++	this->own_name_id = Gio::DBus::own_name(Gio::DBus::BusType::SESSION, RTNG_DBUS_NAME,
+ 		sigc::mem_fun(*this, &RtngDbus::on_bus_acquired),
+ 		Gio::DBus::SlotNameAcquired(),
+ 		[this](const Glib::RefPtr<Gio::DBus::Connection>& connection, const Glib::ustring&)

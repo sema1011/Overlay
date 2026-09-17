@@ -39,32 +39,12 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 BDEPEND="sys-apps/lsb-release"
 
+PATCHES=(
+	"${FILESDIR}/${P}-compatibility.patch"
+)
+
 src_prepare() {
-	cmake_src_prepare
-
-	# Патчи совместимости с актуальными версиями зависимостей
-	sed -i \
-		-e 's/-Werror//g' \
-		-e 's/glibmm-2\.4/glibmm-2.68/g' \
-		-e 's/giomm-2\.4/giomm-2.68/g' \
-		-e 's/BusType::BUS_TYPE_SESSION/BusType::SESSION/g' \
-		-e 's/BusType::BUS_TYPE_SYSTEM/BusType::SYSTEM/g' \
-		-e 's/BusType::BUS_TYPE_STARTER/BusType::STARTER/g' \
-		-e 's/CXX_STANDARD 14/CXX_STANDARD 17/' \
-		-e 's/gnu++14/gnu++17/' \
-		-e 's/pkg_search_module(APPINDICATOR REQUIRED ayatana-appindicator3-0.1)/pkg_search_module(APPINDICATOR ayatana-appindicator3-0.1)/' \
-		CMakeLists.txt || die
-
-	# BusType патчи нужны и в исходнике
-	sed -i \
-		-e 's/BusType::BUS_TYPE_SESSION/BusType::SESSION/g' \
-		-e 's/BusType::BUS_TYPE_SYSTEM/BusType::SYSTEM/g' \
-		-e 's/BusType::BUS_TYPE_STARTER/BusType::STARTER/g' \
-		src/radiotray-ng/extras/rtng_dbus/rtng_dbus.cpp || die
-
-    # user-agent.cmake пытается вызвать git, но в tarball нет .git — заглушаем
-	sed -i 's/execute_process(COMMAND git/#execute_process(COMMAND git/' cmake/user-agent.cmake || die
-
+	default
 }
 
 src_configure() {
