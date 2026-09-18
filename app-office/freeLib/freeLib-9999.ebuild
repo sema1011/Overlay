@@ -9,7 +9,7 @@ DESCRIPTION="Cataloger for LibRusEc and Flibusta book libraries"
 HOMEPAGE="https://github.com/petrovvlad/freeLib"
 
 EGIT_REPO_URI="https://github.com/petrovvlad/freeLib.git"
-EGIT_BRANCH="master"
+EGIT_BRANCH="main"
 EGIT_SUBMODULES=( '*' )
 
 LICENSE="GPL-3"
