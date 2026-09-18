@@ -27,8 +27,6 @@ RDEPEND="${DEPEND}
 EGIT_REPO_URI="https://github.com/sema1011/portconf.git"
 
 src_install(){
-	default
-
 	insinto /etc/
 	newins portconf.conf portconf.conf
 	dobin portconf
