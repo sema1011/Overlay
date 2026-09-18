@@ -15,7 +15,7 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND="
-	dev-libs/taglib:=
+	media-libs/taglib:=
 	kde-frameworks/kdsingleapplication:6
 	dev-qt/qtcore:6
 	dev-qt/qtgui:6
