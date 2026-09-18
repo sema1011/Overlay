@@ -24,12 +24,8 @@ RDEPEND="${DEPEND}
 	sys-apps/grep
 "
 
-PATCHES=(
-        "${FILESDIR}/portconf.patch"
-)
-
 src_install(){
 	insinto /etc/
 	newins portconf.conf portconf.conf
-	dobin portconf
+	dobin "${FILESDIR}/portconf"
 }
