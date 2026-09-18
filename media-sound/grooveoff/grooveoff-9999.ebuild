@@ -17,13 +17,8 @@ IUSE=""
 DEPEND="
 	media-libs/taglib:=
 	dev-libs/kdsingleapplication
-	dev-qt/qtcore:6
-	dev-qt/qtgui:6
-	dev-qt/qtwidgets:6
-	dev-qt/qtnetwork:6
-	dev-qt/qtxml:6
+	dev-qt/qtbase:6=[gui,widgets,network,xml,dbus]
 	dev-qt/qtsvg:6
-	dev-qt/qtdbus:6
 	dev-qt/qtmultimedia:6
 "
 RDEPEND="${DEPEND}"
