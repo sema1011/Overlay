@@ -14,10 +14,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-PATCHES=(
-	"${FILESDIR}/groovesharks-org.patch"
-)
-
 DEPEND="
 	media-libs/taglib:=
 	dev-libs/kdsingleapplication
@@ -32,6 +28,7 @@ BDEPEND="
 
 src_prepare() {
 	default
+	sed -i 's|grooveshark\.com|groovesharks.org|g' src/libgrooveshark/config.cpp
 	cmake_src_prepare
 }
 
