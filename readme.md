@@ -28,7 +28,10 @@ emerge --sync overlay
 
 | Пакет | Описание |
 |-------|----------|
+| `app-office/freeLib` | Cataloger for LibRusEc and Flibusta book libraries |
 | `app-portage/portconf` | /etc/portage cleaner |
+| `games-util/gtnh-daily-updater` | Updates daily and experimental GTNH packs to the latest version |
+| `media-radio/radiotray-ng` | Internet radio player for Linux based on GStreamer |
 
 ## Лицензия
 
