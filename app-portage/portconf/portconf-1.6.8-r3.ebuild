@@ -25,7 +25,7 @@ RDEPEND="${DEPEND}
 "
 
 PATCHES=(
-        "${FILESDIR}/fix_grep.patch"
+        "${FILESDIR}/portconf.patch"
 )
 
 src_install(){

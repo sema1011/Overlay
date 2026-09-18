@@ -38,8 +38,4 @@ src_configure() {
 	cmake_src_configure
 }
 
-src_install() {
-	cmake_src_install
-
-	domenu "${PN}.desktop"
-}
+# CMakeLists.txt already handles all installation
