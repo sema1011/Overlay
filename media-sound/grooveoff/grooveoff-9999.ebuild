@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake git-r3
+inherit cmake git-r3 xdg
 
 DESCRIPTION="Offline Grooveshark.com music"
 HOMEPAGE="https://github.com/gcala/grooveoff"
@@ -34,3 +34,11 @@ src_configure() {
 }
 
 # CMakeLists.txt already handles all installation
+
+pkg_postinst() {
+	xdg_pkg_postinst
+}
+
+pkg_postrm() {
+	xdg_pkg_postrm
+}
