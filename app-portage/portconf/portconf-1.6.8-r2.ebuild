@@ -9,7 +9,7 @@ SRC_URI="https://github.com/sema1011/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+KEYWORDS="~*"
 IUSE=""
 RESTRICT="mirror"
 
@@ -29,8 +29,6 @@ PATCHES=(
 )
 
 src_install(){
-	default
-
 	insinto /etc/
 	newins portconf.conf portconf.conf
 	dobin portconf
