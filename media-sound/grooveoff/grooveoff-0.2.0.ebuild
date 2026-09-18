@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake qt6 xdg
+inherit cmake xdg
 
 DESCRIPTION="Offline Grooveshark.com music"
 HOMEPAGE="https://github.com/gcala/grooveoff"

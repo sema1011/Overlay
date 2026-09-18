@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake git-r3 qt6 xdg
+inherit cmake git-r3 xdg
 
 DESCRIPTION="Offline Grooveshark.com music"
 HOMEPAGE="https://github.com/gcala/grooveoff"
@@ -11,7 +11,7 @@ EGIT_REPO_URI="https://github.com/gcala/${PN}.git"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND="
