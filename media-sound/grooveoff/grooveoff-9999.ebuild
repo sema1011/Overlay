@@ -16,7 +16,7 @@ IUSE=""
 
 DEPEND="
 	media-libs/taglib:=
-	kde-frameworks/kdsingleapplication:6
+	dev-libs/kdsingleapplication
 	dev-qt/qtcore:6
 	dev-qt/qtgui:6
 	dev-qt/qtwidgets:6
