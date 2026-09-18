@@ -14,7 +14,7 @@
 [overlay]
 location = /var/db/repos/overlay
 sync-type = git
-sync-uri = https://github.com/sema1011/overlay.git
+sync-uri = https://github.com/sema1011/Overlay.git
 priority = 50
 ```
 
