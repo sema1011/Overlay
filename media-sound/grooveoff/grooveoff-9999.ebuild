@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake git-r3 xdg
+inherit cmake git-r3
 
 DESCRIPTION="Offline Grooveshark.com music"
 HOMEPAGE="https://github.com/gcala/grooveoff"
