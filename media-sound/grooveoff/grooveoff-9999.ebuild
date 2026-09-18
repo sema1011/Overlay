@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake git-r3 xdg
 
-DESCRIPTION="Offline Grooveshark.com music"
+DESCRIPTION="Offline Groovesharks.org music"
 HOMEPAGE="https://github.com/gcala/grooveoff"
 EGIT_REPO_URI="https://github.com/gcala/${PN}.git"
 
@@ -13,6 +13,10 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
+
+PATCHES=(
+	"${FILESDIR}/groovesharks-org.patch"
+)
 
 DEPEND="
 	media-libs/taglib:=
@@ -25,6 +29,11 @@ RDEPEND="${DEPEND}"
 BDEPEND="
 	dev-qt/qttools:6
 "
+
+src_prepare() {
+	default
+	cmake_src_prepare
+}
 
 src_configure() {
 	local mycmakeargs=(
