@@ -6,8 +6,8 @@ EAPI=8
 inherit git-r3
 
 DESCRIPTION="/etc/portage cleaner"
-HOMEPAGE="https://github.com/megabaks/portconf"
-EGIT_REPO_URI="https://github.com/megabaks/portconf.git"
+HOMEPAGE="https://github.com/sema1011/portconf"
+EGIT_REPO_URI="https://github.com/sema1011/portconf.git"
 SRC_URI=""
 
 LICENSE="GPL-3+"
