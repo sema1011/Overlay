@@ -32,4 +32,4 @@ emerge --sync overlay
 
 ## Лицензия
 
-Все ebuild'ы распространяются под лицензией [GPL-2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
+Каждый ebuild имеет свою лицензию, указанную в заголовке файла.
