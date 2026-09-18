@@ -3,13 +3,16 @@
 
 EAPI=8
 
+inherit git-r3
+
 DESCRIPTION="/etc/portage cleaner"
 HOMEPAGE="https://github.com/sema1011/portconf"
+EGIT_REPO_URI="https://github.com/sema1011/portconf.git"
 SRC_URI=""
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~*"
 IUSE=""
 RESTRICT="mirror"
 
@@ -23,8 +26,6 @@ RDEPEND="${DEPEND}
 	sys-apps/gawk
 	sys-apps/grep
 "
-
-EGIT_REPO_URI="https://github.com/sema1011/portconf.git"
 
 src_install(){
 	insinto /etc/
