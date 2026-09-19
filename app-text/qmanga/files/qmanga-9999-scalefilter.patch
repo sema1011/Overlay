@@ -1,0 +1,18 @@
+--- a/imagescale/scalefilter.cpp
++++ b/imagescale/scalefilter.cpp
+@@ -652,12 +652,14 @@
+ {
+     QSize destSize(img.size());
+     destSize.scale(sz, aspectRatio);
+-    if(img.isNull() || !destSize.isValid())
++    if(img.isNull() || !destSize.isValid() || destSize.width()<=0 || destSize.height()<=0)
+         return(img);
+     int dw = destSize.width();
+     int dh = destSize.height();
+ 
+     QImage imgc = img;
++    if(imgc.width()<=0 || imgc.height()<=0)
++        return(img);
+     if(imgc.depth() != 32){
+         imgc = imgc.convertToFormat(imgc.hasAlphaChannel() ?
+                                       QImage::Format_ARGB32 :

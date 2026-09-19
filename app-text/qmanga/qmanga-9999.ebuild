@@ -36,9 +36,10 @@ BDEPEND="
 
 PATCHES=(
 	"${FILESDIR}"/${P}-epub.patch
+	"${FILESDIR}"/${P}-scalefilter.patch
 )
 
-	src_prepare() {
+src_prepare() {
 	default
 
 	# Remove INSTALLS for desktop/icons - we install them manually
