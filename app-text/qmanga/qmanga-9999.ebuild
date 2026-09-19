@@ -34,12 +34,19 @@ BDEPEND="
 	>=dev-qt/qtbase-6.5:6
 "
 
-src_prepare() {
+PATCHES=(
+	"${FILESDIR}"/${P}-epub.patch
+)
+
+	src_prepare() {
 	default
 
 	# Remove INSTALLS for desktop/icons - we install them manually
 	sed -i '/^INSTALLS/s/ desktop icons//' qmanga.pro || die
 	sed -i '/^desktop\.\|icons\./d' qmanga.pro || die
+
+	# Remove deprecated "Application;" from Categories
+	sed -i 's/Categories=Application;Graphics;Viewer;/Categories=Graphics;Viewer;/' qmanga.desktop || die
 }
 
 src_configure() {
