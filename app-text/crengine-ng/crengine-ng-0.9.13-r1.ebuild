@@ -40,18 +40,20 @@ BDEPEND=">=dev-build/cmake-3.14
 
 PATCHES=( "${FILESDIR}"/${P}-unittests.patch )
 
-src_prepare() {
-	cmake_src_prepare
+	src_prepare() {
+		cmake_src_prepare
+		cp "${FILESDIR}"/FindWebP.cmake "${S}/" || die
 	if use test; then
 		mkdir -p "${BUILD_DIR}/crengine/tests/fonts/"
 		cp -p "${WORKDIR}/freefont-20120503/"*.otf "${BUILD_DIR}/crengine/tests/fonts/"
 	fi
 }
 
-src_configure() {
-	CMAKE_BUILD_TYPE="Release"
-	local mycmakeargs=(
-		-DCRE_BUILD_SHARED=ON
+	src_configure() {
+		CMAKE_BUILD_TYPE="Release"
+		local mycmakeargs=(
+			-DCMAKE_MODULE_PATH="${WORKDIR}/FindWebP.cmake"
+			-DCRE_BUILD_SHARED=ON
 		-DCRE_BUILD_STATIC=$(usex static-libs)
 		-DUSE_COLOR_BACKBUFFER=ON
 		-DWITH_LIBPNG=$(usex png)
