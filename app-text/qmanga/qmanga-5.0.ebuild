@@ -12,7 +12,7 @@ SRC_URI="https://github.com/kernel1024/qmanga/archive/refs/tags/v${PV}.tar.gz ->
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="djvu ocr poppler"
+IUSE="djvu epub ocr poppler"
 
 DEPEND="
 	>=dev-qt/qtbase-6.5:6[dbus,sql,widgets,xml,network]
@@ -24,6 +24,7 @@ DEPEND="
 "
 RDEPEND="${DEPEND}
 	djvu? ( app-text/djvu )
+	epub? ( app-text/libgepub )
 	ocr? ( >=app-text/tesseract-4.0:=[leptonica] )
 	poppler? ( >=media-gfx/poppler-0.83[cpp] )
 "
