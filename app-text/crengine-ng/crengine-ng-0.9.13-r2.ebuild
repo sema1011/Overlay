@@ -38,7 +38,10 @@ BDEPEND=">=dev-build/cmake-3.14
 	virtual/pkgconfig
 	${CDEPEND}"
 
-PATCHES=( "${FILESDIR}"/${P}-unittests.patch )
+PATCHES=(
+	"${FILESDIR}"/${P}-unittests.patch
+	"${FILESDIR}"/${P}-libunibreak-defs.patch
+)
 
 src_prepare() {
 	cmake_src_prepare
