@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit cmake
+inherit cmake toolchain-funcs
 
 DESCRIPTION="Cross-platform library designed to implement e-book readers"
 HOMEPAGE="https://gitlab.com/coolreader-ng/crengine-ng"
@@ -79,6 +79,9 @@ src_configure() {
 		-DENABLE_UNITTESTING=$(usex test)
 		-DOFFLINE_BUILD_MODE=ON
 	)
+	if use libunibreak; then
+		append-cxxflags -I/usr/include
+	fi
 	cmake_src_configure
 }
 
