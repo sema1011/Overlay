@@ -21,7 +21,7 @@ DEPEND="
 	dev-libs/openssl:=
 	dev-cpp/tbb:=
 	sys-libs/zlib:=
-	app-text/leptonica:=
+	media-libs/leptonica:=
 "
 RDEPEND="${DEPEND}
 	djvu? ( app-text/djvu )
@@ -36,6 +36,8 @@ BDEPEND="${DEPEND}
 PATCHES=(
 	"${FILESDIR}"/${P}-fix-tbb.patch
 	"${FILESDIR}"/${P}-fix-lept.patch
+	"${FILESDIR}"/${P}-fix-zfilecopier.patch
+	"${FILESDIR}"/${P}-fix-pdfreader.patch
 )
 
 src_prepare() {
