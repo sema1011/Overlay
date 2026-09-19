@@ -1,15 +1,21 @@
 --- a/qmanga.pro
 +++ b/qmanga.pro
-@@ -159,7 +159,11 @@!win32 {
+@@ -159,11 +159,16 @@
          CONFIG += use_epub
          message("Using libepub:        YES")
      } else {
 -        exists(/usr/local/lib/libepub.so) {
 +        exists(/usr/lib64/libepub.so) {
-+            CONFIG += use_epub
-+            message("Using libepub:        YES")
-+        } else {
-+            exists(/usr/local/lib/libepub.so) {
              CONFIG += use_epub
              message("Using libepub:        YES")
          } else {
+-            message("Using libepub:        NO")
++            exists(/usr/local/lib/libepub.so) {
++                CONFIG += use_epub
++                message("Using libepub:        YES")
++            } else {
++                message("Using libepub:        NO")
++            }
+         }
+     }
+ 
