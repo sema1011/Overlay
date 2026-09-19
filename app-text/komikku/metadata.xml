@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>gentoo@example.com</email>
+		<name>Gentoo Contributor</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="codeberg">valos/Komikku</remote-id>
+		<remote-id type="github">valos/Komikku</remote-id>
+		<bugs-to>https://codeberg.org/valos/Komikku/issues</bugs-to>
+	</upstream>
+</pkgmetadata>
