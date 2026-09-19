@@ -41,6 +41,7 @@ BDEPEND=">=dev-build/cmake-3.14
 PATCHES=(
 	"${FILESDIR}"/${P}-unittests.patch
 	"${FILESDIR}"/${P}-libunibreak-defs.patch
+	"${FILESDIR}"/${P}-textlang-h.patch
 )
 
 src_prepare() {
