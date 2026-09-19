@@ -1,6 +1,6 @@
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -380,7 +380,9 @@ if (LIBUNIBREAK_FOUND)
+@@ -378,7 +378,9 @@ if (LIBUNIBREAK_FOUND)
      endif()
      set(USE_LIBUNIBREAK ON)
      list(APPEND PRIVATE_INCLUDE_DIRECTORIES ${LIBUNIBREAK_INCLUDE_DIR})
