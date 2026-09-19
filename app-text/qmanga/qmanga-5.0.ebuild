@@ -12,35 +12,23 @@ SRC_URI="https://github.com/kernel1024/qmanga/archive/refs/tags/v${PV}.tar.gz ->
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="djvu epub ocr poppler"
+IUSE="djvu ocr poppler"
 
 DEPEND="
-	>=dev-qt/qtcore-6.5:6[dbus]
-	>=dev-qt/qtgui-6.5:6
-	>=dev-qt/qtsql-6.5:6
-	>=dev-qt/qtwidgets-6.5:6
-	>=dev-qt/qtxml-6.5:6
-	>=dev-qt/qtnetwork-6.5:6
-	>=app-arch/libzip-1.0:=
+	>=dev-qt/qtbase-6.5:6[dbus,sql,widgets,xml,network]
+	>=dev-libs/libzip-1.0:=
 	dev-libs/icu:=
 	dev-libs/openssl:=
-	dev-libs/tbb:=
-	dev-libs/zlib:=
+	dev-cpp/tbb:=
+	sys-libs/zlib:=
 "
 RDEPEND="${DEPEND}
-	djvu? ( >=media-gfx/djvulibre-3.5.28 )
-	epub? ( dev-libs/libepub )
+	djvu? ( app-text/djvu )
 	ocr? ( >=app-text/tesseract-4.0:=[leptonica] )
 	poppler? ( >=media-gfx/poppler-0.83[cpp] )
 "
 BDEPEND="${DEPEND}
-	>=dev-qt/qtcore-6.5:6
-	>=dev-qt/qtdbus-6.5:6
-	>=dev-qt/qtgui-6.5:6
-	>=dev-qt/qtsql-6.5:6
-	>=dev-qt/qtwidgets-6.5:6
-	>=dev-qt/qtxml-6.5:6
-	>=dev-qt/qtnetwork-6.5:6
+	>=dev-qt/qtbase-6.5:6
 "
 
 src_prepare() {
