@@ -16,12 +16,14 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	dev-qt/qtbase:6=[gui,widgets,network,sql,svg,multimedia,opengl,shadercompiler,texttospeech]
-	dev-qt/qtdeclarative:6=[qml,quick,quickcontrols2,quickwidgets,shadertools]
+	dev-qt/qtbase:6=[gui,widgets,network,sql,opengl]
+	dev-qt/qtmultimedia:6
+	dev-qt/qtsvg:6
+	dev-qt/qtspeech:6
+	dev-qt/qtdeclarative:6=[opengl,svg]
 	dev-qt/qt5compat:6
-	dev-qt/qtwayland:6
-	media-libs/poppler[qt6]
-	media-libs/libarchive
+	app-text/poppler[qt6]
+	app-arch/libarchive
 "
 RDEPEND="${DEPEND}"
 
