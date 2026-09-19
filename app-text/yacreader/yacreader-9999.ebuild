@@ -31,6 +31,10 @@ BDEPEND="
 	dev-qt/qttools:6
 "
 
+PATCHES=(
+	"${FILESDIR}"/yacreader-QsLog-CMake-min-version.patch
+)
+
 src_configure() {
 	local mycmakeargs=(
 		-DBUILD_TESTS=OFF

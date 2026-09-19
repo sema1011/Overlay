@@ -31,7 +31,7 @@ BDEPEND="
 "
 
 PATCHES=(
-	"${FILESDIR}"/${P}-QsLog-CMake-min-version.patch
+	"${FILESDIR}"/yacreader-QsLog-CMake-min-version.patch
 )
 
 src_configure() {
