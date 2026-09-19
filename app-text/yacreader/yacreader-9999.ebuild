@@ -10,7 +10,7 @@ HOMEPAGE="https://yacreader.com/"
 EGIT_REPO_URI="https://github.com/YACReader/yacreader.git"
 EGIT_BRANCH="develop"
 
-LICENSE="GPL-2+"
+LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS=""
 IUSE=""

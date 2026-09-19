@@ -9,7 +9,7 @@ DESCRIPTION="Yet Another Comic Reader - comic and manga reader"
 HOMEPAGE="https://yacreader.com/"
 SRC_URI="https://github.com/YACReader/yacreader/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="GPL-2+"
+LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
