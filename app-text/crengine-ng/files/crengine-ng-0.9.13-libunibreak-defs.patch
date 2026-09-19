@@ -1,6 +1,7 @@
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -378,7 +378,9 @@ if (LIBUNIBREAK_FOUND)
+@@ -380,10 +380,12 @@ if (LIBUNIBREAK_FOUND)
+         message(STATUS "It is recommended to use libunibreak version 6.0 or later")
      endif()
      set(USE_LIBUNIBREAK ON)
      list(APPEND PRIVATE_INCLUDE_DIRECTORIES ${LIBUNIBREAK_INCLUDE_DIR})
@@ -10,3 +11,5 @@
      set(USE_LIBUNIBREAK OFF)
 +    list(APPEND PRIVATE_COMPILE_DEFINITIONS -DUSE_LIBUNIBREAK=0)
  endif()
+
+ # zstd library
