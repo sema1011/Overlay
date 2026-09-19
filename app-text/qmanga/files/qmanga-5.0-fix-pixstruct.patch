@@ -1,7 +1,0 @@
---- a/global.cpp
-+++ b/global.cpp
-@@ -1,3 +1,4 @@
-+#include <leptonica/pixstruct.h>
- #include <leptonica/allheaders.h>
- #include <QMutex>
- #include <QBuffer>
