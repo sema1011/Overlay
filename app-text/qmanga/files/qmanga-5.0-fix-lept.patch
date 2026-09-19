@@ -1,0 +1,7 @@
+--- a/global.cpp
++++ b/global.cpp
+@@ -1,4 +1,5 @@
++#include <leptonica/allheaders.h>
+ #include <QMutex>
+ #include <QBuffer>
+ #include <QDir>

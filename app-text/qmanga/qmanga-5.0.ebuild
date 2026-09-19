@@ -21,16 +21,22 @@ DEPEND="
 	dev-libs/openssl:=
 	dev-cpp/tbb:=
 	sys-libs/zlib:=
+	app-text/leptonica:=
 "
 RDEPEND="${DEPEND}
 	djvu? ( app-text/djvu )
 	epub? ( app-text/libgepub )
-	ocr? ( >=app-text/tesseract-4.0:=[leptonica] )
-	poppler? ( >=media-gfx/poppler-0.83[cpp] )
+	ocr? ( >=app-text/tesseract-4.0 )
+	poppler? ( app-text/poppler[cxx] )
 "
 BDEPEND="${DEPEND}
 	>=dev-qt/qtbase-6.5:6
 "
+
+PATCHES=(
+	"${FILESDIR}"/${P}-fix-tbb.patch
+	"${FILESDIR}"/${P}-fix-lept.patch
+)
 
 src_prepare() {
 	default
@@ -42,6 +48,7 @@ src_prepare() {
 src_configure() {
 	local myqmakeargs=(
 		"CONFIG+=optimize_full"
+		"CONFIG+=c++20"
 	)
 
 	use poppler && myqmakeargs+=( "CONFIG+=use_poppler" )
