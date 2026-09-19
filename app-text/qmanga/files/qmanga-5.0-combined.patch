@@ -67,30 +67,76 @@
  
  # for deprecations in GCC 11-12 without oneTBB
  DEFINES += TBB_SUPPRESS_DEPRECATED_MESSAGES
-@@ -117,6 +118,7 @@
+@@ -117,59 +118,66 @@
          error("Dependency error: icu not found.");
      }
  
+-    packagesExist(poppler-cpp) {
+-        packagesExist(poppler) {
+-            CONFIG += use_poppler
+-            message("Using Poppler:        YES")
+-        } else {
+-            message("Using Poppler:        NO")
 +    !contains(CONFIG, portage) {
-     packagesExist(poppler-cpp) {
-         packagesExist(poppler) {
-             CONFIG += use_poppler
-@@ -144,6 +146,10 @@
-         CONFIG += use_epub
-         message("Using libepub:        YES")
-     } else {
-+        exists(/usr/lib64/libepub.so) {
-+            CONFIG += use_epub
-+            message("Using libepub:        YES")
++        packagesExist(poppler-cpp) {
++            packagesExist(poppler) {
++                CONFIG += use_poppler
++                message("Using Poppler:        YES")
++            } else {
++                message("Using Poppler:        NO")
++            }
+         }
+-    }
+ 
+-    packagesExist(tesseract) {
+-        CONFIG += use_ocr
+-        message("Using Tesseract OCR:  YES")
+-    } else {
+-        message("Using Tesseract OCR:  NO")
+-    }
++        packagesExist(tesseract) {
++            CONFIG += use_ocr
++            message("Using Tesseract OCR:  YES")
 +        } else {
-         exists(/usr/local/lib/libepub.so) {
++            message("Using Tesseract OCR:  NO")
++        }
+ 
+-    packagesExist(ddjvuapi) {
+-        CONFIG += use_djvu
+-        message("Using DjVuLibre:      YES")
+-    } else {
+-        message("Using DjVuLibre:      NO")
+-    }
++        packagesExist(ddjvuapi) {
++            CONFIG += use_djvu
++            message("Using DjVuLibre:      YES")
++        } else {
++            message("Using DjVuLibre:      NO")
++        }
+ 
+-    exists(/usr/lib/libepub.so) {
+-        CONFIG += use_epub
+-        message("Using libepub:        YES")
+-    } else {
+-        exists(/usr/local/lib/libepub.so) {
++        exists(/usr/lib/libepub.so) {
              CONFIG += use_epub
              message("Using libepub:        YES")
-@@ -151,25 +157,26 @@
-             message("Using libepub:        NO")
+         } else {
+-            message("Using libepub:        NO")
++            exists(/usr/lib64/libepub.so) {
++                CONFIG += use_epub
++                message("Using libepub:        YES")
++            } else {
++                exists(/usr/local/lib/libepub.so) {
++                    CONFIG += use_epub
++                    message("Using libepub:        YES")
++                } else {
++                    message("Using libepub:        NO")
++                }
++            }
          }
      }
-+    }
  
 -    use_poppler {
 +    contains(CONFIG, use_poppler) {
@@ -118,7 +164,7 @@
          DEFINES += WITH_EPUB=1
          LIBS += -lepub
      }
-@@ -188,7 +195,7 @@
+@@ -188,7 +196,7 @@
      DEFINES += WITH_OCR=1
      QMAKE_CXXFLAGS += -Wno-ignored-qualifiers
      PKGCONFIG += tesseract
@@ -127,15 +173,15 @@
  
      DEFINES += WITH_DJVU=1
      PKGCONFIG += ddjvuapi
-@@ -212,10 +219,6 @@
+@@ -212,10 +220,4 @@
  TARGET       = qmanga
  TARGET.files = qmanga
  TARGET.path  = $$INSTALL_PREFIX/bin
 -INSTALLS    += TARGET desktop icons
-+INSTALLS    += TARGET 
- 
+-
 -desktop.files	= qmanga.desktop
 -desktop.path	= $$INSTALL_PREFIX/share/applications
- 
+-
 -icons.files	= img/Alien9.png
 -icons.path	= $$INSTALL_PREFIX/share/icons
++INSTALLS    += TARGET
