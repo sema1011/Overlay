@@ -30,6 +30,10 @@ BDEPEND="
 	dev-qt/qttools:6
 "
 
+PATCHES=(
+	"${FILESDIR}"/${P}-QsLog-CMake-min-version.patch
+)
+
 src_configure() {
 	local mycmakeargs=(
 		-DBUILD_TESTS=OFF

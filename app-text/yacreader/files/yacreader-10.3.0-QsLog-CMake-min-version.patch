@@ -1,0 +1,8 @@
+--- a/third_party/QsLog/CMakeLists.txt
++++ b/third_party/QsLog/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ # CMake build support courtesy of Axel Gembe <axel@gembe.net>
+-cmake_minimum_required(VERSION 2.8)
++cmake_minimum_required(VERSION 3.10)
+ 
+ project(QsLog)
