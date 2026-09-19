@@ -34,22 +34,21 @@ BDEPEND="
 	>=dev-qt/qtbase-6.5:6
 "
 
-PATCHES=(
-	"${FILESDIR}"/${P}-combined.patch
-)
-
 src_prepare() {
 	default
+
+	# Remove INSTALLS for desktop/icons - we install them manually
+	sed -i '/^INSTALLS/s/ desktop icons//' qmanga.pro || die
+	sed -i '/^desktop\.\|icons\./d' qmanga.pro || die
 }
 
 src_configure() {
 	local myqmakeargs=(
-		"CONFIG+=c++20"
 		"CONFIG+=portage"
 	)
 
 	use poppler && myqmakeargs+=( "CONFIG+=use_poppler" "PKGCONFIG+=poppler-cpp poppler" )
-	use ocr && myqmakeargs+=( "CONFIG+=use_ocr" "PKGCONFIG+=tesseract" "LIBS+=-lleptonica" )
+	use ocr && myqmakeargs+=( "CONFIG+=use_ocr" "PKGCONFIG+=tesseract lept" )
 	use djvu && myqmakeargs+=( "CONFIG+=use_djvu" "PKGCONFIG+=ddjvuapi" )
 	use epub && myqmakeargs+=( "CONFIG+=use_epub" "LIBS+=-lepub" )
 
