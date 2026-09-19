@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake qt6 git-r3
+inherit cmake git-r3 xdg
 
 DESCRIPTION="Yet Another Comic Reader - comic and manga reader"
 HOMEPAGE="https://yacreader.com/"
@@ -16,40 +16,29 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	dev-qt/qtcore:6
-	dev-qt/qtgui:6
-	dev-qt/qtwidgets:6
-	dev-qt/qtquick:6
-	dev-qt/qtquickcontrols2:6
-	dev-qt/qtquickwidgets:6
-	dev-qt/qtqml:6
-	dev-qt/qtqmlworkerscript:6
-	dev-qt/qtsql:6
-	dev-qt/qtmultimedia:6
-	dev-qt/qtnetwork:6
-	dev-qt/qtsvg:6
-	dev-qt/qtopenglwidgets:6
-	dev-qt/qtshadertools:6
-	dev-qt/qttexttospeech:6
+	dev-qt/qtbase:6=[gui,widgets,network,sql,svg,multimedia,opengl,shadercompiler,texttospeech]
+	dev-qt/qtdeclarative:6=[qml,quick,quickcontrols2,quickwidgets,shadertools]
 	dev-qt/qt5compat:6
+	dev-qt/qtwayland:6
 	media-libs/poppler[qt6]
 	media-libs/libarchive
 "
 RDEPEND="${DEPEND}"
 
 BDEPEND="
-	dev-build/cmake
-	dev-util/qt6-tools:[assistant,designer]
-	dev-util/extra-cmake-modules
-	virtual/pkgconfig
+	dev-qt/qttools:6
 "
 
-src_configure()
-	cmake_build \
-		-DBUILD_TESTS=OFF \
-		-DBUILD_SERVER_STANDALONE=OFF \
-		-DDECOMPRESSION_BACKEND=libarchive \
+src_configure() {
+	local mycmakeargs=(
+		-DBUILD_TESTS=OFF
+		-DBUILD_SERVER_STANDALONE=OFF
+		-DDECOMPRESSION_BACKEND=libarchive
 		-DPDF_BACKEND=poppler
+	)
+	cmake_src_configure
+}
 
-src_install()
+src_install() {
 	cmake_src_install
+}
