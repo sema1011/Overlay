@@ -36,8 +36,10 @@ BDEPEND="${DEPEND}
 PATCHES=(
 	"${FILESDIR}"/${P}-fix-tbb.patch
 	"${FILESDIR}"/${P}-fix-lept.patch
+	"${FILESDIR}"/${P}-fix-pixstruct.patch
 	"${FILESDIR}"/${P}-fix-zfilecopier.patch
 	"${FILESDIR}"/${P}-fix-pdfreader.patch
+	"${FILESDIR}"/${P}-fix-tbb-emit.patch
 )
 
 src_prepare() {

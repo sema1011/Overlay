@@ -1,0 +1,10 @@
+--- a/zmangaview.cpp
++++ b/zmangaview.cpp
+@@ -12,6 +12,7 @@
+ #include <QElapsedTimer>
+ #include <QComboBox>
+ #include <algorithm>
++#undef emit
+ #include <execution>
+ #include <functional>
+ #include <climits>
