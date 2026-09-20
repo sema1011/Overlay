@@ -12,7 +12,7 @@ EGIT_REPO_URI="https://github.com/kernel1024/qmanga.git"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE="djvu epub ocr poppler"
 
 DEPEND="

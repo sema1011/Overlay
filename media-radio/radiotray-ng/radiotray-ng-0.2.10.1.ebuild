@@ -6,21 +6,16 @@ EAPI=8
 WX_GTK_VER="3.2-gtk3"
 inherit cmake wxwidgets xdg
 
-if [[ ${PV} == 9999 ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/ebruck/radiotray-ng.git"
-else
-	SRC_URI="https://github.com/ebruck/radiotray-ng/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86"
-	S="${WORKDIR}/${P}"
-fi
-
 DESCRIPTION="Internet radio player for Linux based on GStreamer"
 HOMEPAGE="https://github.com/ebruck/radiotray-ng"
+SRC_URI="https://github.com/ebruck/radiotray-ng/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="GPL-3+"
 SLOT="0"
+KEYWORDS="~amd64 ~x86"
 IUSE="appindicator test"
 RESTRICT="!test? ( test )"
+
+S="${WORKDIR}/${P}"
 
 RDEPEND="
 	dev-cpp/glibmm
