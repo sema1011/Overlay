@@ -11,7 +11,10 @@
   </upstream>
   <use>
     <flag name="font-subsetting">Enable font subsetting support</flag>
+    <flag name="ios">Enable iOS device support via libimobiledevice</flag>
+    <flag name="speech">Enable speech synthesis support via speech-dispatcher</flag>
     <flag name="system-mathjax">Use a system copy of mathjax</flag>
+    <flag name="test">Enable tests</flag>
     <flag name="unrar">Enable support for comic books compressed with the non-free Rar format</flag>
   </use>
 </pkgmetadata>

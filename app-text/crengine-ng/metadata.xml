@@ -16,10 +16,18 @@
   </longdescription>
   <use>
     <flag name="chm">Support chm format</flag>
-    <flag name="harfbuzz">Use <pkg>media-libs/harfbuzz</pkg> for kerning and ligatures</flag>
-    <flag name="libunibreak">Use <pkg>dev-libs/libunibreak</pkg> for hyphenation</flag>
     <flag name="fribidi">Support bidirectional text by <pkg>dev-libs/fribidi</pkg></flag>
+    <flag name="harfbuzz">Use <pkg>media-libs/harfbuzz</pkg> for kerning and ligatures</flag>
+    <flag name="jpeg">Enable JPEG image support</flag>
     <flag name="libutf8proc">Use <pkg>dev-libs/libutf8proc</pkg> for manipulating unicode strings</flag>
+    <flag name="png">Enable PNG image support</flag>
+    <flag name="static-libs">Build static library</flag>
+    <flag name="test">Enable tests</flag>
+    <flag name="webp">Enable WebP image support</flag>
+    <flag name="zstd">Enable ZSTD compression support</flag>
+    <flag name="gif">Enable GIF support</flag>
+    <flag name="svg">Enable SVG support via nanosvg</flag>
+    <flag name="fontconfig">Use fontconfig for font discovery</flag>
   </use>
   <upstream>
     <remote-id type="gitlab">coolreader-ng/crengine-ng</remote-id>

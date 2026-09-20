@@ -5,9 +5,11 @@
     <email>sema19689@gmail.com</email>
     <name>Sem</name>
   </maintainer>
+  <use>
+    <flag name="appindicator">Enable application indicator support via libayatana-appindicator</flag>
+    <flag name="test">Enable tests</flag>
+  </use>
   <upstream>
-	<remote-id type="codeberg">valos/Komikku</remote-id>
-	<remote-id type="github">valos/Komikku</remote-id>
-	<bugs-to>https://codeberg.org/valos/Komikku/issues</bugs-to>
+    <remote-id type="github">ebruck/radiotray-ng</remote-id>
   </upstream>
 </pkgmetadata>

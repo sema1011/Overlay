@@ -40,19 +40,17 @@ LICENSE="
 	PSF-2
 "
 SLOT="0"
-KEYWORDS="~amd64 ~arm64"
+KEYWORDS="~amd64"
 IUSE="+font-subsetting ios speech +system-mathjax test +udisks unrar"
 
 RESTRICT="!test? ( test )"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-# Qt slotted dependencies are used because the libheadless.so plugin links to
-# QT_*_PRIVATE_ABI. It only uses core/gui/dbus.
 COMMON_DEPEND="${PYTHON_DEPS}
 	app-i18n/uchardet
 	>=app-text/hunspell-1.7:=
-	>=app-text/podofo-0.10.0:=
+	>=app-text/podofo-1.1.0:1=[jpeg,png]
 	app-text/poppler[utils]
 	dev-libs/hyphen:=
 	>=dev-libs/icu-57.1:=
@@ -100,6 +98,8 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	virtual/libusb:1=
 	x11-misc/shared-mime-info
 	>=x11-misc/xdg-utils-1.0.2-r2
+"
+RDEPEND="${COMMON_DEPEND}
 	font-subsetting? ( $(python_gen_cond_dep 'dev-python/fonttools[${PYTHON_USEDEP}]') )
 	ios? (
 		>=app-pda/usbmuxd-1.0.8
@@ -110,73 +110,38 @@ COMMON_DEPEND="${PYTHON_DEPS}
 		dev-python/pyqt6[multimedia,speech]
 	)
 	system-mathjax? ( >=dev-libs/mathjax-3:= )
-	udisks? ( virtual/libudev )
+	udisks? ( virtual/libudev sys-fs/udisks:2 )
 	unrar? ( dev-python/unrardll )
 "
-RDEPEND="${COMMON_DEPEND}
-	udisks? ( sys-fs/udisks:2 )"
 DEPEND="${COMMON_DEPEND}
 	test? ( $(python_gen_cond_dep '>=dev-python/chardet-3.0.3[${PYTHON_USEDEP}]') )
 "
-# dev-build/cmake is needed because setup.py build_headless() shells out to
-# cmake + make to build the libheadless.so Qt platform plugin.
-#
-# The rapydscript-ng floor is load-bearing and new in the 9.x series: upstream
-# raised its external-compiler check from >=0.7.5 to >=0.8.5 (see
-# external_compiler_version() in src/calibre/utils/rapydscript.py). Below the
-# floor the check does not error -- it silently reports "no external compiler"
-# and falls back to the compiler embedded in Qt WebEngine, which then tries to
-# mkdir inside /usr and dies on a sandbox violation halfway through
-# src_compile. ::gentoo's dependency is unversioned and its rapydscript-ng is
-# 0.7.22, so USE=system-mathjax cannot build there at all; this overlay carries
-# 0.8.6 for it. An unversioned atom here would turn a dependency error into
-# that sandbox failure, so do not drop the >=.
 BDEPEND="$(python_gen_cond_dep '
 		>=dev-python/pyqt-builder-1.10.3[${PYTHON_USEDEP}]
 		>=dev-python/sip-5[${PYTHON_USEDEP}]
 	')
 	virtual/pkgconfig
+	app-misc/pax-utils
 	dev-build/cmake
 	system-mathjax? ( >=dev-lang/rapydscript-ng-0.8.5 )
 	verify-sig? ( sec-keys/openpgp-keys-kovidgoyal )
 "
 
-# PATCHES=(
-# 	"${FILESDIR}/${PN}-9.15.0-jxr-test.patch"
-# 	"${FILESDIR}/${PN}-9.15.0-piper.patch"
-# )
-# Patches need rebasing from 8.9.0 series for 9.x
+PATCHES=(
+	"${FILESDIR}/${PN}-9.15.0-jxr-test.patch"
+	"${FILESDIR}/${PN}-9.15.0-piper.patch"
+)
 
 src_prepare() {
 	default
-
-	# Warning:
-	#
-	# While it might be rather tempting to add yet another sed here,
-	# please don't. There have been several bugs in Gentoo's packaging
-	# of calibre from seds-which-become-stale. Please consider
-	# creating a patch instead, but in any case, run the test suite
-	# and ensure it passes.
-	#
-	# If in doubt about a problem, checking Fedora's packaging is recommended.
 
 	# Disable privilege dropping for bug #287067 and generally because desktop
 	# login user != portage.
 	sed -e "s:SUDO_:__DISABLED_SUDO_:" \
 		-i setup/__init__.py || die
 
-	# This is only ever used at build time. It contains a small embedded copy
-	# of the rapydscript-ng compiler usable inside of qtwebengine, if you don't
-	# have rapydscript-ng (a nodejs package) itself installed. Its only purpose
-	# is to build some resources that come bundled in dist tarballs already...
-	# and which we may also need to regenerate e.g. to use system-mathjax.
-	#
-	# However, running qtwebengine violates the portage sandbox (among other
-	# things, it tries to create directories in /usr! amazing) so this is a
-	# wash anyway. The only real solution here is to package rapydscript-ng.
-	#
-	# We do not need it at build time, and *no one* needs it at install time.
-	# Delete the cruft.
+	# Delete the rapydscript-ng compiler embedded in qtwebengine. It violates
+	# the portage sandbox (tries to mkdir inside /usr) and is unnecessary.
 	rm -r resources/rapydscript/ || die
 }
 
@@ -186,17 +151,28 @@ src_compile() {
 
 	# bug 821871
 	local MY_LIBDIR="${ESYSROOT}/usr/$(get_libdir)"
-	export FT_LIB_DIR="${MY_LIBDIR}" HUNSPELL_LIB_DIR="${MY_LIBDIR}" PODOFO_LIB_DIR="${MY_LIBDIR}"
+	export FT_LIB_DIR="${MY_LIBDIR}" HUNSPELL_LIB_DIR="${MY_LIBDIR}"
+
+	# app-text/podofo:1 is installed into a private prefix so that it can
+	# coexist with slot 0.
+	local podofo_libdir="${ESYSROOT}/usr/$(get_libdir)/podofo-1"
+	export PODOFO_INC_DIR="${ESYSROOT}/usr/include/podofo-1/podofo"
+	export PODOFO_LIB_DIR="${podofo_libdir}"
+	export PODOFO_LIB_NAME="${podofo_libdir}/libpodofo.so"
+	export LDFLAGS="${LDFLAGS} -Wl,-rpath,${EPREFIX}/usr/$(get_libdir)/podofo-1"
 	export QMAKE="$(qt6_get_bindir)/qmake"
 
 	edo ${EPYTHON} setup.py build
+
+	# Guard: assert the extension needs the SONAME of the slot it was compiled
+	# against.
+	local want got
+	want=$(scanelf -qF '%S#F' "${podofo_libdir}/libpodofo.so") || die
+	got=$(scanelf -qF '%n#F' src/calibre/plugins/podofo.so) || die
+	[[ ,${got}, == *,${want},* ]] ||
+		die "podofo.so needs '${got}', expected '${want}': the wrong PoDoFo slot was linked in"
 	edo ${EPYTHON} setup.py gui
 
-	# A few different resources are bundled in the distfile by default, because
-	# not all systems necessarily have them. We un-vendor them, using the
-	# upstream integrated approach if possible. See setup/revendor.py and
-	# consider migrating other resources to this if they do not use it, in
-	# *preference* over manual rm'ing.
 	edo ${EPYTHON} setup.py liberation_fonts \
 		--path-to-liberation_fonts "${EPREFIX}"/usr/share/fonts/liberation-fonts \
 		--system-liberation_fonts
@@ -213,7 +189,7 @@ src_test() {
 		7z
 		# unpackaged Python dependency: pyzstd
 		test_zstd
-		# unpackaged TTS backend (optional at runtime): https://github.com/rhasspy/piper
+		# unpackaged TTS backend (optional at runtime)
 		piper
 		# tests if a completely unused module is bundled
 		pycryptodome
@@ -226,25 +202,17 @@ src_test() {
 		test_searching
 	)
 
-	# Some of these tests weren't practical to split out into distinct tests, so
-	# have a different control mechanism
 	use speech || export SKIP_SPEECH_TESTS=1
 
 	edo ${PYTHON} setup.py test "${_test_excludes[@]/#/--exclude-test-name=}"
 }
 
 src_install() {
-	# Bug #352625 - Some LANGUAGE values can trigger the following ValueError:
-	#   File "/usr/lib/python2.6/locale.py", line 486, in getdefaultlocale
-	#    return _parse_localename(localename)
-	#  File "/usr/lib/python2.6/locale.py", line 418, in _parse_localename
-	#    raise ValueError, 'unknown locale: %s' % localename
-	#ValueError: unknown locale: 46
+	# Bug #352625 - Some LANGUAGE values can trigger a ValueError
 	export -n LANG LANGUAGE ${!LC_*}
 	export LC_ALL=C.UTF-8 # bug #709682
 
-	# Bug #295672 - Avoid sandbox violation in ~/.config by forcing
-	# variables to point to our fake temporary $HOME.
+	# Bug #295672 - Avoid sandbox violation in ~/.config
 	export HOME="${T}/fake_homedir"
 	export CALIBRE_CONFIG_DIRECTORY="${HOME}/.config/calibre"
 	mkdir -p "${CALIBRE_CONFIG_DIRECTORY}" || die

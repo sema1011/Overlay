@@ -6,8 +6,9 @@
     <name>Sem</name>
   </maintainer>
   <upstream>
-	<remote-id type="codeberg">valos/Komikku</remote-id>
-	<remote-id type="github">valos/Komikku</remote-id>
-	<bugs-to>https://codeberg.org/valos/Komikku/issues</bugs-to>
+    <remote-id type="github">petrovvlad/freeLib</remote-id>
   </upstream>
+  <use>
+    <flag name="djvu">Enable DJVU format support</flag>
+  </use>
 </pkgmetadata>
