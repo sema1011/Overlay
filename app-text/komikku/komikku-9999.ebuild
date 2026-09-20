@@ -6,16 +6,19 @@ EAPI=8
 PYTHON_COMPAT=( python3_{12..14} )
 PYTHON_REQ_USE="sqlite(+),ssl(+)"
 
-inherit meson xdg
+inherit git-r3 meson xdg
 
-DESCRIPTION="Manga reader for GNOME"
+PV="9999"
+EGIT_REPO_URI="https://codeberg.org/valos/Komikku.git"
+EGIT_BRANCH="main"
+EGIT_MAXDEPTH="1"
+
+DESCRIPTION="Manga reader for GNOME (live)"
 HOMEPAGE="https://apps.gnome.org/Komikku/"
-SRC_URI="https://codeberg.org/valos/Komikku/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/komikku"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE=""
 
 DEPEND="
@@ -29,7 +32,6 @@ DEPEND="
 "
 RDEPEND="
 	${DEPEND}
-	>=net-libs/webkit-gtk-2.46:6[introspection]
 	>=app-arch/brotli-1.2.0
 	dev-python/beautifulsoup4
 	dev-python/colorthief
