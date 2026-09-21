@@ -15,7 +15,7 @@ SRC_URI="https://github.com/flacon/flacon/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="LGPL-2.1+"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="alac alacenc ape aac +flac +mp3 +ogg opus sox tta +wavpack test"
+IUSE="alac alacenc ape aac +flac +mp3 +ogg opus +sox tta +wavpack test"
 
 BDEPEND="
 	dev-qt/qttools:6[linguist]
