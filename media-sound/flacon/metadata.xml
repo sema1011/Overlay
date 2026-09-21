@@ -3,10 +3,23 @@
 <pkgmetadata>
   <maintainer type="person">
     <email>sema19689@gmail.com</email>
-    <name>Sem</name>
+    <name>sema1011</name>
   </maintainer>
   <upstream>
     <remote-id type="github">flacon/flacon</remote-id>
     <bugs-to>https://github.com/flacon/flacon/issues</bugs-to>
   </upstream>
+  <use>
+    <flag name="aac">Enable AAC output support via faac</flag>
+    <flag name="alac">Enable ALAC output support via alac_decoder</flag>
+    <flag name="alacenc">Enable ALAC input support via alacenc</flag>
+    <flag name="ape">Enable APE input support via mac</flag>
+    <flag name="flac">Enable FLAC input and output support</flag>
+    <flag name="mp3">Enable MP3 output support via lame</flag>
+    <flag name="ogg">Enable Ogg Vorbis output support via vorbis-tools</flag>
+    <flag name="opus">Enable Opus output support</flag>
+    <flag name="sox">Enable audio resampling via sox</flag>
+    <flag name="tta">Enable TTA input support via ttaenc</flag>
+    <flag name="wavpack">Enable WavPack input and output support</flag>
+  </use>
 </pkgmetadata>

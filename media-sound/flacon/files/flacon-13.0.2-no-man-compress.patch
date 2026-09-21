@@ -1,0 +1,30 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -319,7 +319,7 @@
+ )
+ 
+ add_custom_command(TARGET ${PROJECT_NAME}
+-    COMMAND gzip -c -n ${CMAKE_CURRENT_BINARY_DIR}/flacon.1 > ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz
++    COMMAND gzip -c -n ${CMAKE_CURRENT_BINARY_DIR}/flacon.1 > ${CMAKE_CURRENT_BINARY_DIR}/flacon.1
+ )
+ 
+ string(REPLACE "/lib/cmake/Qt5Core" "" QT_DIR "${Qt5Core_DIR}")
+@@ -328,7 +328,7 @@
+     set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Flacon")
+     install(TARGETS ${PROJECT_NAME} RUNTIME                 DESTINATION Flacon.app/Contents/MacOS)
+     install(FILES   ${QM_FILES}                             DESTINATION Flacon.app/Contents/translations)
+-    install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz DESTINATION Flacon.app/Contents/Resources)
++    install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/flacon.1 DESTINATION Flacon.app/Contents/Resources)
+     install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/Info.plist  DESTINATION Flacon.app/Contents)
+     install(FILES   images/mainicon/Flacon.icns             DESTINATION Flacon.app/Contents/Resources)
+ 
+@@ -357,7 +357,7 @@
+ else()
+     install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
+     install(FILES   ${QM_FILES}             DESTINATION ${TRANSLATIONS_DIR})
+-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz DESTINATION share/man/man1)
++    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/flacon.1 DESTINATION share/man/man1)
+ 
+     install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop        DESTINATION "share/applications")
+     install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/com.github.Flacon.metainfo.xml DESTINATION "share/metainfo")
