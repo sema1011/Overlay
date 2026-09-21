@@ -10,15 +10,11 @@ EAPI=8
 PYTHON_COMPAT=( python3_14 )
 PYTHON_REQ_USE="sqlite,ssl"
 
-inherit edo toolchain-funcs python-single-r1 qmake-utils verify-sig xdg
+inherit edo toolchain-funcs python-single-r1 qmake-utils xdg
 
 DESCRIPTION="Ebook management application"
 HOMEPAGE="https://calibre-ebook.com/"
-SRC_URI="
-	https://download.calibre-ebook.com/${PV}/${P}.tar.xz
-	verify-sig? ( https://calibre-ebook.com/signatures/${P}.tar.xz.sig )
-"
-VERIFY_SIG_OPENPGP_KEY_PATH=/usr/share/openpgp-keys/kovidgoyal.gpg
+SRC_URI="https://github.com/kovidgoyal/calibre/releases/download/v${PV}/${P}.tar.xz -> ${P}.tar.xz"
 
 LICENSE="
 	GPL-3+
@@ -29,7 +25,7 @@ LICENSE="
 	LGPL-3+
 	LGPL-2.1+
 	LGPL-2.1
-	BSD
+	BSL
 	MIT
 	Old-MIT
 	Apache-2.0
@@ -87,8 +83,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	')
 	dev-qt/qtbase:6=[gui,widgets]
 	dev-qt/qtimageformats:6
-	dev-util/desktop-file-utils
-	dev-util/gtk-update-icon-cache
+	system-mathjax? ( >=dev-libs/mathjax-3:= )
 	media-fonts/liberation-fonts
 	media-libs/fontconfig:=
 	>=media-libs/freetype-2:=
@@ -123,8 +118,9 @@ BDEPEND="$(python_gen_cond_dep '
 	virtual/pkgconfig
 	app-misc/pax-utils
 	dev-build/cmake
+	dev-util/desktop-file-utils
+	dev-util/gtk-update-icon-cache
 	system-mathjax? ( >=dev-lang/rapydscript-ng-0.8.5 )
-	verify-sig? ( sec-keys/openpgp-keys-kovidgoyal )
 "
 
 PATCHES=(
@@ -142,7 +138,8 @@ src_prepare() {
 
 	# Delete the rapydscript-ng compiler embedded in qtwebengine. It violates
 	# the portage sandbox (tries to mkdir inside /usr) and is unnecessary.
-	rm -r resources/rapydscript/ || die
+	# Preserve other files in resources/ (e.g. scripts.calibre_msgpack).
+	rm -rf resources/rapydscript || die
 }
 
 src_compile() {
@@ -173,6 +170,9 @@ src_compile() {
 		die "podofo.so needs '${got}', expected '${want}': the wrong PoDoFo slot was linked in"
 	edo ${EPYTHON} setup.py gui
 
+	# Use system liberation fonts instead of vendored ones.
+	# The release tarball already contains pre-built resources (mathjax,
+	# hyphenation, piper_voices, etc.), so we only need to replace fonts.
 	edo ${EPYTHON} setup.py liberation_fonts \
 		--path-to-liberation_fonts "${EPREFIX}"/usr/share/fonts/liberation-fonts \
 		--system-liberation_fonts
