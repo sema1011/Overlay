@@ -2,13 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer type="person">
-    <email>grozin@gentoo.org</email>
-    <name>Andrey Grozin</name>
-  </maintainer>
-  <maintainer type="person">
-    <email>valexlin@gmail.com</email>
-    <name>Aleksey Chernov</name>
-    <description>upstream</description>
+    <email>sema19689@gmail.com</email>
+    <name>sema1011</name>
   </maintainer>
   <longdescription lang="en">
     A fork of coolreader engine. Supported formats are: fb2 (including fb2.zip), fb3,

@@ -2,8 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer type="person">
-    <email>eschwartz@gentoo.org</email>
-    <name>Eli Schwartz</name>
+    <email>sema19689@gmail.com</email>
+    <name>sema1011</name>
   </maintainer>
   <upstream>
     <remote-id type="github">kovidgoyal/calibre</remote-id>

@@ -2,12 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
-		<email>eschwartz@gentoo.org</email>
-		<name>Eli Schwartz</name>
-	</maintainer>
-	<maintainer type="person" proxied="yes">
-		<email>fkobi@pm.me</email>
-		<name>Filip Kobierski</name>
+		<email>sema19689@gmail.com</email>
+		<name>sema1011</name>
 	</maintainer>
 	<use>
 		<flag name="dbus">Enable support for notifications and power-management features via D-Bus</flag>
