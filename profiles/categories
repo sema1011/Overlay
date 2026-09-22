@@ -5,3 +5,5 @@ dev-lang
 dev-python
 games-util
 media-radio
+media-sound
+net-p2p
