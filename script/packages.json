@@ -1,0 +1,78 @@
+{
+  "EbookLib": {
+    "version": "0.20",
+    "url": "https://github.com/aerkalov/ebooklib/releases"
+  },
+  "calibre": {
+    "version": "9.15.0",
+    "url": "https://github.com/kovidgoyal/calibre/releases"
+  },
+  "courlan": {
+    "version": "1.4.0",
+    "url": "https://github.com/adbar/courlan/releases"
+  },
+  "crengine-ng": {
+    "version": "0.9.13",
+    "url": "https://gitlab.com/coolreader-ng/crengine-ng/-/releases"
+  },
+  "dateparser": {
+    "version": "1.4.3",
+    "url": "https://github.com/scrapinghub/dateparser/releases"
+  },
+  "flacon": {
+    "version": "13.0.2",
+    "url": "https://github.com/flacon/flacon/releases"
+  },
+  "gtnh-daily-updater": {
+    "version": "1.2.2",
+    "url": "https://github.com/Caedis/gtnh-daily-updater/releases"
+  },
+  "htmldate": {
+    "version": "1.10.0",
+    "url": "https://github.com/adbar/htmldate/releases"
+  },
+  "justext": {
+    "version": "3.0.2",
+    "url": "https://pypi.org/project/justext"
+  },
+  "komikku": {
+    "version": "51.0.1",
+    "url": "https://codeberg.org/valos/Komikku/releases"
+  },
+  "markdownurl": {
+    "version": "1.0.5",
+    "url": "https://github.com/sema1011/MarkdownURL/releases"
+  },
+  "podofo": {
+    "version": "1.1.2",
+    "url": "https://github.com/podofo/podofo/releases"
+  },
+  "qbittorrent": {
+    "version": "5.2.3",
+    "url": "https://github.com/qbittorrent/qBittorrent/releases"
+  },
+  "qmanga": {
+    "version": "5.0",
+    "url": "https://github.com/kernel1024/qmanga/releases"
+  },
+  "radiotray-ng": {
+    "version": "0.2.10.1",
+    "url": "https://github.com/ebruck/radiotray-ng/releases"
+  },
+  "rapydscript-ng": {
+    "version": "0.8.6",
+    "url": "https://github.com/kovidgoyal/rapydscript-ng/releases"
+  },
+  "tld": {
+    "version": "0.13.2",
+    "url": "https://pypi.org/project/tld"
+  },
+  "trafilatura": {
+    "version": "2.2.0",
+    "url": "https://github.com/adbar/trafilatura/releases"
+  },
+  "yacreader": {
+    "version": "10.3.1",
+    "url": "https://github.com/YACReader/yacreader/releases"
+  }
+}
