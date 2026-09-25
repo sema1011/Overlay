@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Keyboard Layout Indicator for LXQt panel using StatusNotifierItem (SNI).
-Uses xkb-monitor for real-time layout tracking.
+Uses xkb-switch for keyboard layout polling.
 """
 
 import dbus
@@ -32,17 +32,14 @@ def create_text_icon(text, size=22):
     surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, size, size)
     ctx = cairo.Context(surface)
     
-    # Background
     ctx.set_source_rgba(0.2, 0.2, 0.2, 0.9)
     ctx.rectangle(0, 0, size, size)
     ctx.fill()
     
-    # Text
     ctx.set_source_rgb(1, 1, 1)
     ctx.select_font_face("Sans", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
     ctx.set_font_size(size * 0.65)
     
-    # Center text
     extents = ctx.text_extents(text)
     x = (size - extents.width) / 2 - extents.x_bearing
     y = (size - extents.height) / 2 - extents.y_bearing
@@ -63,11 +60,27 @@ def ensure_icons():
             surface = create_text_icon(name)
             surface.write_to_png(icon_path)
     
-    # Default icon
     default_path = os.path.join(ICON_DIR, 'default.png')
     if not os.path.exists(default_path):
         surface = create_text_icon('??')
         surface.write_to_png(default_path)
+
+
+def get_current_layout():
+    """Get current keyboard layout using xkb-switch."""
+    try:
+        result = subprocess.run(
+            ['xkb-switch', '-g'],
+            capture_output=True,
+            text=True,
+            timeout=2
+        )
+        if result.returncode == 0:
+            layout = result.stdout.strip().lower()
+            return layout
+    except Exception:
+        pass
+    return 'us'
 
 
 class StatusNotifierItem(dbus.service.Object):
@@ -79,20 +92,18 @@ class StatusNotifierItem(dbus.service.Object):
     def __init__(self, bus, object_path):
         dbus.service.Object.__init__(self, bus, object_path)
         self.current_layout = 'us'
-        self.xkb_process = None
-        self._xkb_buffer = b''
-        self._xkb_fd = None
         self._bus = bus
         self._object_path = object_path
 
-        self.start_xkb_monitor()
-
-        # Try registering now; if watcher isn't up yet, retry via GLib timer
+        # Try registering with StatusNotifierWatcher
         if not self._try_register():
             self._watch_for_watcher()
 
+        # Start polling
+        GLib.timeout_add_seconds(1, self.poll_layout)
+
     def _try_register(self):
-        """Attempt to register with StatusNotifierWatcher. Returns True on success."""
+        """Attempt to register with StatusNotifierWatcher."""
         try:
             watcher = self._bus.get_object(
                 'org.kde.StatusNotifierWatcher',
@@ -107,7 +118,7 @@ class StatusNotifierItem(dbus.service.Object):
             return False
 
     def _watch_for_watcher(self):
-        """Subscribe to NameOwnerChanged so we register as soon as watcher appears."""
+        """Subscribe to NameOwnerChanged for watcher registration."""
         def on_name_owner_changed(name, old_owner, new_owner):
             if name == 'org.kde.StatusNotifierWatcher' and new_owner:
                 self._try_register()
@@ -119,68 +130,15 @@ class StatusNotifierItem(dbus.service.Object):
             path='/org/freedesktop/DBus'
         )
     
-    def start_xkb_monitor(self):
-        """Start xkb-monitor and read its output via raw fd."""
+    def poll_layout(self):
+        """Poll current layout and update if changed."""
         try:
-            self.xkb_process = subprocess.Popen(
-                ['stdbuf', '-oL', '/usr/bin/xkb-monitor'],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.DEVNULL,
-                text=False,
-                bufsize=0
-            )
-            self._xkb_fd = self.xkb_process.stdout.fileno()
-            self._xkb_buffer = b''
-            
-            GLib.io_add_watch(
-                self._xkb_fd,
-                GLib.PRIORITY_DEFAULT,
-                GLib.IOCondition.IN | GLib.IOCondition.HUP,
-                self.on_xkb_output
-            )
+            layout = get_current_layout()
+            if layout and layout != self.current_layout:
+                self.update_layout(layout)
         except Exception as e:
-            print(f"Failed to start xkb-monitor: {e}", file=sys.stderr)
-    
-    def on_xkb_output(self, source, condition):
-        """Handle output from xkb-monitor using raw fd reads."""
-        if condition & GLib.IOCondition.HUP:
-            GLib.timeout_add_seconds(1, self.restart_xkb_monitor)
-            return False
-        
-        if condition & GLib.IOCondition.IN:
-            try:
-                data = os.read(self._xkb_fd, 4096)
-            except BlockingIOError:
-                return True
-            except OSError:
-                return False
-            
-            if not data:
-                return False
-            
-            self._xkb_buffer += data
-            while b'\n' in self._xkb_buffer:
-                line, self._xkb_buffer = self._xkb_buffer.split(b'\n', 1)
-                try:
-                    parts = line.decode().strip().split(',')
-                    if len(parts) >= 3:
-                        layout_code = parts[2]
-                        GLib.idle_add(self.update_layout, layout_code)
-                except (IndexError, ValueError):
-                    pass
-        
+            print(f"Poll error: {e}", file=sys.stderr)
         return True
-    
-    def restart_xkb_monitor(self):
-        """Restart xkb-monitor if it crashed."""
-        if self.xkb_process:
-            self.xkb_process.terminate()
-            try:
-                self.xkb_process.wait(timeout=1)
-            except:
-                self.xkb_process.kill()
-        self.start_xkb_monitor()
-        return False
     
     def update_layout(self, layout_code):
         """Update current layout and emit signal."""
@@ -196,14 +154,8 @@ class StatusNotifierItem(dbus.service.Object):
     
     def cleanup(self):
         """Clean up resources."""
-        if self.xkb_process:
-            self.xkb_process.terminate()
-            try:
-                self.xkb_process.wait(timeout=2)
-            except:
-                self.xkb_process.kill()
+        pass
     
-    # DBus Properties interface
     @dbus.service.method(PROPERTIES_IFACE, in_signature='ss', out_signature='v')
     def Get(self, interface, prop):
         return self.GetAll(interface)[prop]
@@ -233,7 +185,6 @@ class StatusNotifierItem(dbus.service.Object):
             'ItemIsMenu': False,
         }
     
-    # StatusNotifierItem signals
     @dbus.service.signal(ITEM_IFACE)
     def NewIcon(self):
         pass
@@ -246,7 +197,6 @@ class StatusNotifierItem(dbus.service.Object):
     def NewStatus(self, status):
         pass
     
-    # StatusNotifierItem methods
     @dbus.service.method(ITEM_IFACE, in_signature='ii')
     def Activate(self, x, y):
         return

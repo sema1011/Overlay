@@ -21,7 +21,7 @@ RDEPEND="
 	dev-python/dbus-python[${PYTHON_USEDEP}]
 	dev-python/pygobject[${PYTHON_USEDEP}]
 	dev-python/pycairo[${PYTHON_USEDEP}]
-	sys-apps/xkb-monitor
+	sys-apps/xkb-switch
 	lxqt-base/lxqt-panel
 "
 DEPEND="${RDEPEND}"
