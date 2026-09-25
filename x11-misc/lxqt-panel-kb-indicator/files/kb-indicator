@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """
 Keyboard Layout Indicator for LXQt panel using StatusNotifierItem (SNI).
-Uses xkb-switch for keyboard layout polling.
+Uses KWin D-Bus interface for real-time layout tracking.
 """
 
 import dbus
 import dbus.service
 import dbus.mainloop.glib
 from gi.repository import GLib
-import subprocess
 import signal
 import sys
 import os
@@ -66,20 +65,17 @@ def ensure_icons():
         surface.write_to_png(default_path)
 
 
-def get_current_layout():
-    """Get current keyboard layout using xkb-switch."""
+def get_layout_name(index):
+    """Get layout name from KWin D-Bus interface."""
     try:
-        result = subprocess.run(
-            ['xkb-switch', '-g'],
-            capture_output=True,
-            text=True,
-            timeout=2
-        )
-        if result.returncode == 0:
-            layout = result.stdout.strip().lower()
-            return layout
-    except Exception:
-        pass
+        bus = dbus.SessionBus()
+        obj = bus.get_object('org.kde.KWin', '/Layouts')
+        iface = dbus.Interface(obj, 'org.kde.KeyboardLayouts')
+        layouts = iface.getLayoutsList()
+        if index < len(layouts):
+            return layouts[index][0].lower()
+    except Exception as e:
+        print(f"KWin layout error: {e}", file=sys.stderr)
     return 'us'
 
 
@@ -95,12 +91,43 @@ class StatusNotifierItem(dbus.service.Object):
         self._bus = bus
         self._object_path = object_path
 
+        # Get initial layout
+        self._update_layout()
+
         # Try registering with StatusNotifierWatcher
         if not self._try_register():
             self._watch_for_watcher()
 
-        # Start polling
-        GLib.timeout_add_seconds(1, self.poll_layout)
+        # Listen for layout changes
+        bus.add_signal_receiver(
+            self._on_layout_changed,
+            signal_name='layoutChanged',
+            dbus_interface='org.kde.KeyboardLayouts',
+            path='/Layouts',
+            bus_name='org.kde.KWin'
+        )
+
+    def _update_layout(self):
+        """Update current layout from KWin D-Bus."""
+        try:
+            obj = self._bus.get_object('org.kde.KWin', '/Layouts')
+            iface = dbus.Interface(obj, 'org.kde.KeyboardLayouts')
+            index = iface.getLayout()
+            layout = get_layout_name(index)
+            if layout and layout != self.current_layout:
+                self.current_layout = layout
+                self.NewIcon()
+                self.NewToolTip()
+        except Exception as e:
+            print(f"KWin layout error: {e}", file=sys.stderr)
+
+    def _on_layout_changed(self, index):
+        """Handle layoutChanged signal from KWin."""
+        layout = get_layout_name(index)
+        if layout and layout != self.current_layout:
+            self.current_layout = layout
+            self.NewIcon()
+            self.NewToolTip()
 
     def _try_register(self):
         """Attempt to register with StatusNotifierWatcher."""
@@ -129,28 +156,6 @@ class StatusNotifierItem(dbus.service.Object):
             dbus_interface='org.freedesktop.DBus',
             path='/org/freedesktop/DBus'
         )
-    
-    def poll_layout(self):
-        """Poll current layout and update if changed."""
-        try:
-            layout = get_current_layout()
-            if layout and layout != self.current_layout:
-                self.update_layout(layout)
-        except Exception as e:
-            print(f"Poll error: {e}", file=sys.stderr)
-        return True
-    
-    def update_layout(self, layout_code):
-        """Update current layout and emit signal."""
-        self.current_layout = layout_code
-        icon_file = os.path.join(ICON_DIR, f'{layout_code}.png')
-        if not os.path.exists(icon_file):
-            display_name = LAYOUT_NAMES.get(layout_code, layout_code.upper()[:2])
-            surface = create_text_icon(display_name)
-            surface.write_to_png(icon_file)
-        
-        self.NewIcon()
-        self.NewToolTip()
     
     def cleanup(self):
         """Clean up resources."""
@@ -215,7 +220,6 @@ class StatusNotifierItem(dbus.service.Object):
 
 
 def main():
-    import time
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
     
     ensure_icons()
@@ -226,7 +230,7 @@ def main():
             session_bus = dbus.SessionBus()
             break
         except dbus.DBusException:
-            time.sleep(1)
+            pass
     if session_bus is None:
         sys.exit(1)
     
