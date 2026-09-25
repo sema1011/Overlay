@@ -24,8 +24,8 @@ DEPEND="${RDEPEND}
 
 src_compile() {
 	# Strip layer-shell support to avoid wayland-protocols dependency
-	# Don't strip during build - Portage handles it
-	emake SKIP_WLR_LAYER_SHELL=1 OPTIMIZE="-O2" STRIP=
+	# Makefile release/all targets strip hardcoded, build binary directly
+	emake SKIP_WLR_LAYER_SHELL=1 OPTIMIZE="-O2" xkb-monitor
 }
 
 src_install() {
