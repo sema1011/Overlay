@@ -28,8 +28,8 @@ DEPEND="${RDEPEND}"
 
 src_prepare() {
 	default
-	# Fix hardcoded xkb-monitor path
-	sed -i 's|/usr/local/bin/xkb-monitor|/usr/bin/xkb-monitor|' kb-indicator
+	# Fix hardcoded xkb-monitor path and add stdbuf for unbuffered output
+	sed -i 's|/usr/local/bin/xkb-monitor|stdbuf -oL /usr/bin/xkb-monitor|' kb-indicator
 }
 
 src_install() {
