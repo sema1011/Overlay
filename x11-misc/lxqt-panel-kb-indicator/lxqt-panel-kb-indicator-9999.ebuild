@@ -26,14 +26,8 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 
-src_prepare() {
-	default
-	sed -i 's|/usr/local/bin/xkb-monitor|stdbuf -oL /usr/bin/xkb-monitor|' kb-indicator
-	sed -i '/subprocess.Popen/,/bufsize=1/{s|text=True,|text=True, shell=True,|}' kb-indicator
-}
-
 src_install() {
-	dobin kb-indicator
+	dobin "${FILESDIR}"/kb-indicator
 
 	# Autostart for all users
 	insinto /etc/xdg/autostart
