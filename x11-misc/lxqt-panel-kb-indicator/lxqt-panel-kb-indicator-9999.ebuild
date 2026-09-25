@@ -10,13 +10,16 @@ inherit python-r1
 DESCRIPTION="Keyboard Layout Indicator for LXQt panel using StatusNotifierItem"
 HOMEPAGE="https://gitflic.ru/project/npo_rbs/lxqt-panel-kb-indicator"
 EGIT_REPO_URI="https://gitflic.ru/project/npo_rbs/lxqt-panel-kb-indicator.git"
+EGIT_PROJECT="${PN}"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-S="${WORKDIR}/${PN}"
+src_prepare() {
+	default
+}
 
 RDEPEND="
 	${PYTHON_DEPS}
