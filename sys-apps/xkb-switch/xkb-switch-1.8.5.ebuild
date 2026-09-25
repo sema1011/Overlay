@@ -6,8 +6,8 @@ EAPI=8
 inherit cmake
 
 DESCRIPTION="Switch and query keyboard layout via X11 XKB protocol"
-HOMEPAGE="https://github.com/ierton/xkb-switch"
-SRC_URI="https://github.com/ierton/xkb-switch/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="https://github.com/sergei-mironov/xkb-switch"
+SRC_URI="https://github.com/sergei-mironov/xkb-switch/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
