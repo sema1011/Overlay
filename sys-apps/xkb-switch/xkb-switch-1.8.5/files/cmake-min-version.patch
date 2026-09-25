@@ -1,0 +1,9 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
++CMAKE_MINIMUM_REQUIRED(VERSION 3.10)
+ 
+ PROJECT( XKB-SWITCH )
+ SET(MAJOR_VERSION 2)

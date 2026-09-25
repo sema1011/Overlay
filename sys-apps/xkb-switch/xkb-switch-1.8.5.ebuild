@@ -14,6 +14,10 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
+PATCHES=(
+	"${FILESDIR}"/cmake-min-version.patch
+)
+
 RDEPEND="
 	x11-libs/libX11
 	x11-libs/libxkbfile
