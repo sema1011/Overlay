@@ -28,8 +28,8 @@ DEPEND="${RDEPEND}"
 
 src_prepare() {
 	default
-	# Fix hardcoded xkb-monitor path and add stdbuf for unbuffered output
 	sed -i 's|/usr/local/bin/xkb-monitor|stdbuf -oL /usr/bin/xkb-monitor|' kb-indicator
+	sed -i '/subprocess.Popen/,/bufsize=1/{s|text=True,|text=True, shell=True,|}' kb-indicator
 }
 
 src_install() {
