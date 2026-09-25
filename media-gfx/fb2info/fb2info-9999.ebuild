@@ -24,5 +24,6 @@ DEPEND="${RDEPEND}"
 
 src_install() {
 	dobin fb2info.py
+	insinto /usr/share/thumbnailers
 	doins fb2.thumbnailer
 }
