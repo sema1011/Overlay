@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>sema19689@gmail.com</email>
+    <name>sema1011</name>
+  </maintainer>
+  <upstream>
+    <remote-id type="gitflic">npo_rbs/lxqt-panel-kb-indicator</remote-id>
+    <bugs-to>https://gitflic.ru/project/npo_rbs/lxqt-panel-kb-indicator</bugs-to>
+  </upstream>
+</pkgmetadata>

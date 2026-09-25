@@ -1,0 +1,35 @@
+# Copyright 2026 Overlay Authors
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=8
+
+PYTHON_COMPAT=( python3_{10..14} )
+
+inherit python-r1
+
+DESCRIPTION="Keyboard Layout Indicator for LXQt panel using StatusNotifierItem"
+HOMEPAGE="https://gitflic.ru/project/npo_rbs/lxqt-panel-kb-indicator"
+EGIT_REPO_URI="https://gitflic.ru/project/npo_rbs/lxqt-panel-kb-indicator.git"
+
+LICENSE="GPL-3"
+SLOT="0"
+KEYWORDS=""
+IUSE=""
+
+RDEPEND="
+	${PYTHON_DEPS}
+	dev-python/dbus-python[${PYTHON_USEDEP}]
+	dev-python/pygobject[${PYTHON_USEDEP}]
+	dev-python/pycairo[${PYTHON_USEDEP}]
+	sys-apps/xkb-monitor
+	lxqt-base/lxqt-panel
+"
+DEPEND="${RDEPEND}"
+
+src_install() {
+	dobin kb-indicator
+
+	# Autostart for all users
+	insinto /etc/xdg/autostart
+	doins "${FILESDIR}"/kb-indicator.desktop
+}
