@@ -24,8 +24,8 @@ DEPEND="${RDEPEND}
 
 src_compile() {
 	# Strip layer-shell support to avoid wayland-protocols dependency
-	# Makefile release/all targets strip hardcoded, build binary directly
-	emake SKIP_WLR_LAYER_SHELL=1 OPTIMIZE="-O2" xkb-monitor
+	# Build binary directly (not 'all' which triggers release target with hardcoded strip)
+	emake SKIP_WLR_LAYER_SHELL=1 xkb-monitor
 }
 
 src_install() {
