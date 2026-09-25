@@ -20,6 +20,13 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 
+src_configure() {
+	local mycmakeargs=(
+		-DBUILD_XKBSWITCH_LIB=OFF
+	)
+	cmake_src_configure
+}
+
 src_install() {
 	cmake_src_install
 }
