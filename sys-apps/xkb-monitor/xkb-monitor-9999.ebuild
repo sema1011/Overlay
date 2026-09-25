@@ -24,7 +24,7 @@ DEPEND="${RDEPEND}
 
 src_compile() {
 	# Strip layer-shell support to avoid wayland-protocols dependency
-	emake SKIP_WLR_LAYER_SHELL=1 OPTIMIZE="-O2"
+	emake SKIP_WLR_LAYER_SHELL=1 OPTIMIZE="-O2" STRIP=true
 }
 
 src_install() {

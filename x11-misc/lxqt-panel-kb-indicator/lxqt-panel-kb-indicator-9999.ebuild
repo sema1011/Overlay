@@ -16,6 +16,8 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
+S="${WORKDIR}/${PN}"
+
 RDEPEND="
 	${PYTHON_DEPS}
 	dev-python/dbus-python[${PYTHON_USEDEP}]
