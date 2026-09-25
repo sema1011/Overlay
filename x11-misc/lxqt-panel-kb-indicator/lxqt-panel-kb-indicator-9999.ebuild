@@ -26,6 +26,12 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 
+src_prepare() {
+	default
+	# Fix hardcoded xkb-monitor path
+	sed -i 's|/usr/local/bin/xkb-monitor|/usr/bin/xkb-monitor|' kb-indicator
+}
+
 src_install() {
 	dobin kb-indicator
 
