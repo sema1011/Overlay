@@ -21,7 +21,7 @@ LAYOUT_NAMES = {
     'fr': 'FR',
 }
 
-ICON_DIR = os.path.expanduser('~/.local/share/kb-indicator/icons')
+ICON_DIR = os.path.expanduser('/usr/share/sddm/flags/')
 
 
 def create_text_icon(text, size=22):
@@ -55,14 +55,18 @@ def ensure_icons():
     
     for code, name in LAYOUT_NAMES.items():
         icon_path = os.path.join(ICON_DIR, f'{code}.png')
-        if not os.path.exists(icon_path):
+        try:
             surface = create_text_icon(name)
             surface.write_to_png(icon_path)
+        except Exception:
+            pass
     
     default_path = os.path.join(ICON_DIR, 'default.png')
-    if not os.path.exists(default_path):
+    try:
         surface = create_text_icon('??')
         surface.write_to_png(default_path)
+    except Exception:
+        pass
 
 
 def get_layout_name(index):
