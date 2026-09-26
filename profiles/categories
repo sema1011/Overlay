@@ -1,9 +1,13 @@
 app-office
 app-portage
 app-text
+dev-cpp
 dev-lang
 dev-python
 games-util
+media-gfx
 media-radio
 media-sound
 net-p2p
+sys-apps
+x11-misc
