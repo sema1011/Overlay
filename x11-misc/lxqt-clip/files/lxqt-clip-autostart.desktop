@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=LXQt Clipboard
+Comment=LXQt clipboard history applet
+TryExec=lxqt-clip
+Exec=lxqt-clip
+OnlyShowIn=LXQt;
+X-LXQt-Need-Tray=true

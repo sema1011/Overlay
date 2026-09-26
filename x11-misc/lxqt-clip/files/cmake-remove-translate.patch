@@ -1,0 +1,44 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -80,39 +80,7 @@ set (LXQTCLIP_RESOURCES
+ )
+ 
+ # Translations **********************************
+-lxqt_translate_ts(LXQTCLIP_QM
+-    UPDATE_TRANSLATIONS
+-        ${UPDATE_TRANSLATIONS}
+-    SOURCES
+-        ${LXQTCLIP_HEADERS}
+-        ${LXQTCLIP_SOURCES}
+-        ${LXQTCLIP_FORMS}
+-    INSTALL_DIR
+-        "${LXQT_TRANSLATIONS_DIR}/${PROJECT_NAME}"
+-)
+-lxqt_app_translation_loader(LXQTCLIP_QM_LOADER ${PROJECT_NAME})
+-
+-lxqt_translate_desktop(LXQTCLIP_DESKTOP_FILE
+-    SOURCES
+-        lxqt-clip.desktop.in
+-    INSTALL_DIR
+-        share/applications
+-    COMPONENT
+-        Runtime
+-    USE_YAML
+-)
+-add_custom_target(lxqtclip_desktop_file_target ALL DEPENDS ${LXQTCLIP_DESKTOP_FILE})
+-
+-lxqt_translate_desktop(DESKTOP_FILES
+-    SOURCES
+-        lxqt-clip-autostart.desktop.in
+-    INSTALL_DIR
+-        "${LXQT_ETC_XDG_DIR}/autostart"
+-    COMPONENT
+-        Runtime
+-    USE_YAML
+-)
+-add_custom_target(autostart_desktop_files ALL DEPENDS ${DESKTOP_FILES})
++
+ #************************************************
+ 
+ QT6_WRAP_UI( LXQTCLIP_UI ${LXQTCLIP_FORMS} )
