@@ -1,0 +1,25 @@
+# Copyright 2026 Overlay Authors
+# Distributed under the terms of the GNU General Public License v2
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>sema19689@gmail.com</email>
+		<name>sema1011</name>
+	</maintainer>
+	<use>
+		<flag name="x11">Enable X11 backend support via libxkbcommon-x11 and XCB</flag>
+		<flag name="wayland">Enable Wayland backend support (KWin D-Bus, Sway, Hyprland)</flag>
+	</use>
+	<upstream>
+		<bugs-to>https://github.com/sema1011/plugin-kblayout/issues</bugs-to>
+		<remote-id type="github">sema1011/plugin-kblayout</remote-id>
+	</upstream>
+	<longdescription lang="en">
+		A lightweight LXQt panel plugin for switching keyboard layouts.
+		Supports X11 (via libxkbcommon-x11 + XCB) and Wayland (KWin, Sway, Hyprland).
+		Features include click-to-switch widget, context menu with layout list,
+		and desktop notifications on layout change.
+	</longdescription>
+</pkgmetadata>
