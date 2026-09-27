@@ -12,14 +12,14 @@ EGIT_REPO_URI="https://github.com/sema1011/plugin-kblayout.git"
 LICENSE="LGPL-2.1+"
 SLOT="0"
 KEYWORDS=""
-IUSE="x11 wayland"
+IUSE="X wayland"
 
 DEPEND="
 	>=dev-qt/qtbase-6.5.0
 	>=dev-qt/qttools-6.5.0
 	>=lxqt-base/liblxqt-2.0.0
 	>=x11-libs/libxkbcommon-1.0
-	x11? (
+	X? (
 		x11-libs/libxcb[xkb]
 		x11-libs/libxkbcommon[X]
 	)
@@ -31,7 +31,7 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		-DKBLAYOUT_X11=$(usex x11 ON OFF)
+		-DKBLAYOUT_X11=$(usex X ON OFF)
 		-DKBLAYOUT_WAYLAND=$(usex wayland ON OFF)
 	)
 
