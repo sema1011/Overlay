@@ -20,8 +20,8 @@ DEPEND="
 	>=lxqt-base/liblxqt-2.0.0
 	>=x11-libs/libxkbcommon-1.0
 	x11? (
-		x11-libs/libxcb
-		x11-libs/libxcb-xkb
+		x11-libs/libxcb[xkb]
+		x11-libs/libxkbcommon[X]
 	)
 	wayland? (
 		dev-libs/wayland
