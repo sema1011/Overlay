@@ -24,6 +24,7 @@ DEPEND="
 	>=dev-qt/qtbase-6.5.0
 	>=dev-qt/qttools-6.5.0
 	>=lxqt-base/liblxqt-2.0.0
+	>=lxqt-base/lxqt-build-tools-2.0.0
 	>=x11-libs/libxkbcommon-1.0
 	X? (
 		x11-libs/libxcb[xkb]
