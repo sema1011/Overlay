@@ -1,0 +1,20 @@
+# Copyright 2026 Overlay Authors
+# Distributed under the terms of the GNU General Public License v2
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>sema19689@gmail.com</email>
+		<name>sema1011</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/sema1011/plugin-netstatus/issues</bugs-to>
+		<remote-id type="github">sema1011/plugin-netstatus</remote-id>
+	</upstream>
+	<longdescription lang="en">
+		A lightweight LXQt panel plugin for displaying network connection status.
+		Uses NetworkManager-Qt to monitor connectivity state and display
+		an icon with tooltip information about the current network status.
+	</longdescription>
+</pkgmetadata>

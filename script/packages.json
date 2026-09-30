@@ -88,7 +88,7 @@
     "url": "https://github.com/sergei-mironov/xkb-switch/releases"
   },
   "plugin-kblayout": {
-    "version": "1.0.0",
+    "version": "1.0.10",
     "url": "https://github.com/sema1011/plugin-kblayout/releases"
   }
 }
