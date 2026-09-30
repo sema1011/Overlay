@@ -23,7 +23,7 @@ DEPEND="
 	>=dev-qt/qtbase-6.5.0[dbus,widgets]
 	>=dev-qt/qttools-6.5.0
 	>=lxqt-base/liblxqt-2.0.0
-	>=lxqt-base/lxqt-build-tools-2.0.0
+	>=dev-util/lxqt-build-tools-2.0.0
 	>=kde-frameworks/networkmanager-qt-6.0.0
 "
 RDEPEND="${DEPEND}"
