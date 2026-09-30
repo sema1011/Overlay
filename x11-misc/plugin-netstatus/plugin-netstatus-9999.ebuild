@@ -26,4 +26,14 @@ DEPEND="
 	>=dev-util/lxqt-build-tools-2.0.0
 	>=kde-frameworks/networkmanager-qt-6.0.0
 "
-RDEPEND="${DEPEND}"
+src_configure() {
+	local mycmakeargs=(
+		-DCMAKE_MODULE_PATH=/usr/share/cmake/lxqt2-build-tools/modules
+	)
+
+	cmake_src_configure
+}
+
+src_install() {
+	cmake_src_install
+}

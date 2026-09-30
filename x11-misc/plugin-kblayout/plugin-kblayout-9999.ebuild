@@ -32,6 +32,7 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
+		-DCMAKE_MODULE_PATH=/usr/share/cmake/lxqt2-build-tools/modules
 		-DKBLAYOUT_X11=$(usex X ON OFF)
 		-DKBLAYOUT_WAYLAND=$(usex wayland ON OFF)
 	)
