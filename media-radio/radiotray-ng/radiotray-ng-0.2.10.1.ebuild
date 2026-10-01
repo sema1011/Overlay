@@ -34,12 +34,9 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 BDEPEND="sys-apps/lsb-release"
 
-PATCHES=(
-	"${FILESDIR}/${P}-compatibility.patch"
-)
-
 src_prepare() {
-	default
+	eapply "${FILESDIR}/${P}-compatibility.patch"
+	cmake_src_prepare
 }
 
 src_configure() {
