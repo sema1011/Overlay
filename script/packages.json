@@ -94,5 +94,13 @@
   "plugin-netstatus": {
     "version": "1.0.2",
     "url": "https://github.com/sema1011/plugin-netstatus/releases"
+  },
+  "notquiterss": {
+    "version": "0.95.2",
+    "url": "https://github.com/birdie-github/notquiterss/releases"
+  },
+  "qtsingleapplication": {
+    "version": "0",
+    "url": "https://github.com/qtproject/qt-solutions/releases"
   }
 }
