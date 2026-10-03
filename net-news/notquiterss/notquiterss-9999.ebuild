@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit git qmake-utils xdg
+inherit git-r3 qmake-utils xdg
 
 DESCRIPTION="Qt5/Qt6 only RSS/Atom feed reader without HTML engine"
 HOMEPAGE="https://github.com/birdie-github/notquiterss"
