@@ -28,7 +28,7 @@
     "url": "https://github.com/Caedis/gtnh-daily-updater/releases"
   },
   "htmldate": {
-    "version": "1.10.0",
+    "version": "1.11.0",
     "url": "https://github.com/adbar/htmldate/releases"
   },
   "justext": {
@@ -36,7 +36,7 @@
     "url": "https://pypi.org/project/justext"
   },
   "komikku": {
-    "version": "51.0.1",
+    "version": "51.1.0",
     "url": "https://codeberg.org/valos/Komikku/releases"
   },
   "markdownurl": {
@@ -48,7 +48,7 @@
     "url": "https://github.com/podofo/podofo/releases"
   },
   "qbittorrent": {
-    "version": "5.2.3",
+    "version": "5.2.4",
     "url": "https://github.com/qbittorrent/qBittorrent/releases"
   },
   "qmanga": {
@@ -68,11 +68,11 @@
     "url": "https://pypi.org/project/tld"
   },
   "trafilatura": {
-    "version": "2.2.0",
+    "version": "2.3.0",
     "url": "https://github.com/adbar/trafilatura/releases"
   },
   "yacreader": {
-    "version": "10.3.1",
+    "version": "10.3.2",
     "url": "https://github.com/YACReader/yacreader/releases"
   },
   "qtilitools": {
@@ -96,7 +96,7 @@
     "url": "https://github.com/sema1011/plugin-netstatus/releases"
   },
   "notquiterss": {
-    "version": "0.95.2",
+    "version": "0.95.3",
     "url": "https://github.com/birdie-github/notquiterss/releases"
   },
   "qtsingleapplication": {

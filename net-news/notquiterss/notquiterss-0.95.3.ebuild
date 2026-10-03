@@ -3,15 +3,15 @@
 
 EAPI=8
 
-inherit git qmake-utils xdg
+inherit xdg
 
 DESCRIPTION="Qt5/Qt6 only RSS/Atom feed reader without HTML engine"
 HOMEPAGE="https://github.com/birdie-github/notquiterss"
-EGIT_REPO_URI="https://github.com/sema1011/notquiterss"
 
+SRC_URI="https://github.com/birdie-github/notquiterss/archive/refs/tags/${PV}.tar.gz"
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND="
@@ -22,11 +22,23 @@ DEPEND="
 	>=dev-qt/qt5compat-6:6
 	dev-libs/libxml2:=
 	dev-db/sqlite:=
+	dev-qt/qtsingleapplication
 "
 RDEPEND="${DEPEND}"
 BDEPEND="
 	dev-lang/python
 "
+
+src_prepare() {
+	default
+
+	# Prepare miniaudio dependency (header-only, no shared library)
+	# Use files/ directory for offline installation
+	python3 "${S}/scripts/prepare-miniaudio.py" \
+		--source-dir "${FILESDIR}" \
+		--prefix "${T}/miniaudio-snapshot" || die
+	export MINIAUDIO_INCLUDE_DIR="${T}/miniaudio-snapshot/include"
+}
 
 src_configure() {
 	local myqmakeargs=(
