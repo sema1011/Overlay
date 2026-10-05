@@ -9,9 +9,4 @@
 		<bugs-to>https://github.com/sema1011/plugin-netstatus/issues</bugs-to>
 		<remote-id type="github">sema1011/plugin-netstatus</remote-id>
 	</upstream>
-	<longdescription lang="en">
-		A lightweight LXQt panel plugin for displaying network connection status.
-		Uses NetworkManager-Qt to monitor connectivity state and display
-		an icon with tooltip information about the current network status.
-	</longdescription>
 </pkgmetadata>

@@ -5,8 +5,11 @@
 		<email>sema19689@gmail.com</email>
 		<name>sema1011</name>
 	</maintainer>
+	<use>
+		<flag name="tray">Install tray icon and desktop integration</flag>
+	</use>
 	<upstream>
-		<bugs-to>https://github.com/Caedis/gtnh-daily-updater/issues</bugs-to>
-		<remote-id type="github">Caedis/gtnh-daily-updater</remote-id>
+		<bugs-to>https://github.com/Flowseal/tg-ws-proxy/issues</bugs-to>
+		<remote-id type="github">Flowseal/tg-ws-proxy</remote-id>
 	</upstream>
 </pkgmetadata>

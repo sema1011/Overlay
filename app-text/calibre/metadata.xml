@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-  <maintainer type="person">
-    <email>sema19689@gmail.com</email>
-    <name>sema1011</name>
-  </maintainer>
-  <upstream>
-    <remote-id type="github">kovidgoyal/calibre</remote-id>
-    <changelog>https://calibre-ebook.com/whats-new</changelog>
-  </upstream>
-  <use>
-    <flag name="font-subsetting">Enable font subsetting support</flag>
-    <flag name="ios">Enable iOS device support via libimobiledevice</flag>
-    <flag name="speech">Enable speech synthesis support via speech-dispatcher</flag>
-    <flag name="system-mathjax">Use a system copy of mathjax</flag>
-    <flag name="test">Enable tests</flag>
-    <flag name="unrar">Enable support for comic books compressed with the non-free Rar format</flag>
-  </use>
+	<maintainer type="person">
+		<email>sema19689@gmail.com</email>
+		<name>sema1011</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/kovidgoyal/calibre/issues</bugs-to>
+		<remote-id type="github">kovidgoyal/calibre</remote-id>
+		<changelog>https://calibre-ebook.com/whats-new</changelog>
+	</upstream>
+	<use>
+		<flag name="font-subsetting">Enable font subsetting support</flag>
+		<flag name="ios">Enable iOS device support via libimobiledevice</flag>
+		<flag name="speech">Enable speech synthesis support via speech-dispatcher</flag>
+		<flag name="system-mathjax">Use a system copy of mathjax</flag>
+		<flag name="test">Enable tests</flag>
+		<flag name="unrar">Enable support for comic books compressed with the non-free Rar format</flag>
+	</use>
 </pkgmetadata>

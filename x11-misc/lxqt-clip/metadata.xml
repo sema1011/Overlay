@@ -6,7 +6,7 @@
 		<name>sema1011</name>
 	</maintainer>
 	<upstream>
-		<bugs-to>https://github.com/Caedis/gtnh-daily-updater/issues</bugs-to>
-		<remote-id type="github">Caedis/gtnh-daily-updater</remote-id>
+		<bugs-to>https://github.com/lxqt/lxqt-clip/issues</bugs-to>
+		<remote-id type="github">lxqt/lxqt-clip</remote-id>
 	</upstream>
 </pkgmetadata>

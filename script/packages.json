@@ -102,5 +102,21 @@
   "qtsingleapplication": {
     "version": "0",
     "url": "https://github.com/qtproject/qt-solutions/releases"
+  },
+  "customtkinter": {
+    "version": "6.0.0",
+    "url": "https://github.com/TomSchimansky/CustomTkinter/releases"
+  },
+  "darkdetect": {
+    "version": "0.8.0",
+    "url": "https://github.com/albertosottile/darkdetect/releases"
+  },
+  "pystray": {
+    "version": "0.19.5",
+    "url": "https://github.com/moses-palmer/pystray/releases"
+  },
+  "tg-ws-proxy": {
+    "version": "1.11.0",
+    "url": "https://github.com/Flowseal/tg-ws-proxy/releases"
   }
 }

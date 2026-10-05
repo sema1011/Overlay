@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=TG WS Proxy
+Name[ru]=TG WS Proxy
+GenericName=MTProto Proxy Server
+GenericName[ru]=MTProto прокси-сервер
+Comment=Local MTProto proxy for Telegram Desktop
+Comment[ru]=Локальный MTProto прокси для Telegram Desktop
+Exec=tg-ws-proxy-tray-linux
+Icon=tg-ws-proxy
+Terminal=false
+Type=Application
+Categories=Network;Utility;
+StartupNotify=false

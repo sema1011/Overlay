@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-  <maintainer type="person">
-    <email>sema19689@gmail.com</email>
-    <name>Sema1011</name>
-  </maintainer>
-  <upstream>
-    <remote-id type="github">sema1011/MarkdownURL</remote-id>
-  </upstream>
-  <use>
-    <flag name="test">Enable tests</flag>
-  </use>
+	<maintainer type="person">
+		<email>sema19689@gmail.com</email>
+		<name>sema1011</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/sema1011/MarkdownURL/issues</bugs-to>
+		<remote-id type="github">sema1011/MarkdownURL</remote-id>
+		<remote-id type="pypi">MarkdownURL</remote-id>
+	</upstream>
+	<use>
+		<flag name="test">Enable tests</flag>
+	</use>
 </pkgmetadata>

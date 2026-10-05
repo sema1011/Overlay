@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-  <maintainer type="person">
-    <email>sema19689@gmail.com</email>
-    <name>Sema1011</name>
-  </maintainer>
-  <upstream>
-    <remote-id type="github">adbar/htmldate</remote-id>
-    <remote-id type="pypi">htmldate</remote-id>
-  </upstream>
+	<maintainer type="person">
+		<email>sema19689@gmail.com</email>
+		<name>sema1011</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/adbar/htmldate/issues</bugs-to>
+		<remote-id type="github">adbar/htmldate</remote-id>
+		<remote-id type="pypi">htmldate</remote-id>
+	</upstream>
 </pkgmetadata>
