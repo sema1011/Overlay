@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <maintainer type="person">
+        <email>sema19689@gmail.com</email>
+        <name>sema1011</name>
+    </maintainer>
+    <upstream>
+        <bugs-to>https://gitverse.ru/sema1011/QtFeed/issues</bugs-to>
+        <remote-id type="github">gitverse.ru/sema1011</remote-id>
+    </upstream>
+</pkgmetadata>
