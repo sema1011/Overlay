@@ -3,23 +3,22 @@
 
 EAPI=8
 
-inherit git-r3 qmake-utils xdg
+inherit cmake git-r3
 
-DESCRIPTION="Qt5/Qt6 only RSS/Atom feed reader without HTML engine"
+DESCRIPTION="Qt6 only RSS/Atom feed reader without HTML engine"
 HOMEPAGE="https://gitverse.ru/sema1011/QtFeed"
 EGIT_REPO_URI="https://gitverse.ru/sema1011/QtFeed.git"
 
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="clang lto"
 
 DEPEND="
 	>=dev-qt/qtbase-6.2:6=[dbus,sql,widgets,xml,network]
 	>=dev-qt/qtsvg-6:6
 	>=dev-qt/qtimageformats-6:6
 	>=dev-qt/qttools-6:6
-	>=dev-qt/qt5compat-6:6
 	dev-libs/libxml2:=
 	dev-db/sqlite:=
 "
@@ -29,26 +28,27 @@ BDEPEND="
 "
 
 src_configure() {
-	local myqmakeargs=(
-		"USE_QT=6"
-		"CONFIG+=release"
-		"CONFIG-=debug_and_release"
-		"PREFIX=/usr"
-		"QMAKE_LIBDIR=/usr/$(get_libdir)"
+	local mycmakeargs=(
+		-DCMAKE_INSTALL_PREFIX=/usr
+		-DENABLE_LTO=$(usex lto ON OFF)
 	)
 
-	cd "${S}" || die
-	qmake6 "${myqmakeargs[@]}"
+	if use clang; then
+		mycmakeargs+=(
+			-DCMAKE_C_COMPILER=clang
+			-DCMAKE_CXX_COMPILER=clang++
+		)
+	fi
+
+	cmake_src_configure
 }
 
 src_compile() {
-	emake
+	cmake_src_compile
 }
 
 src_install() {
-	emake INSTALL_ROOT="${D}" install
-
-	einstalldocs
+	cmake_src_install
 }
 
 pkg_postinst() {
