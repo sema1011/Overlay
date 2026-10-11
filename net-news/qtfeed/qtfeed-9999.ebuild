@@ -12,7 +12,7 @@ EGIT_REPO_URI="https://gitverse.ru/sema1011/QtFeed.git"
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS=""
-IUSE="clang lto"
+IUSE="clang lto tests"
 
 DEPEND="
 	>=dev-qt/qtbase-6.2:6=[dbus,sql,widgets,xml,network]
@@ -31,6 +31,7 @@ src_configure() {
 	local mycmakeargs=(
 		-DCMAKE_INSTALL_PREFIX=/usr
 		-DENABLE_LTO=$(usex lto ON OFF)
+		-DQTFEED_BUILD_TESTS=$(usex tests ON OFF)
 	)
 
 	if use clang; then
