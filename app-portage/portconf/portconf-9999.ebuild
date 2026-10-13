@@ -12,7 +12,6 @@ EGIT_REPO_URI="https://github.com/sema1011/portconf.git"
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~*"
-IUSE=""
 
 src_install(){
 	insinto /etc/

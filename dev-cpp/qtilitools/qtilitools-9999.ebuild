@@ -12,8 +12,6 @@ EGIT_REPO_URI="https://github.com/qtilities/qtilitools.git"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS=""
-IUSE=""
 
 BDEPEND="
 	dev-build/cmake

@@ -12,11 +12,10 @@ inherit distutils-r1
 DESCRIPTION="Extract web articles to Obsidian-flavored Markdown"
 HOMEPAGE="https://github.com/sema1011/MarkdownURL"
 SRC_URI="https://github.com/sema1011/MarkdownURL/archive/refs/tags/v${PV}.tar.gz -> ${P}.gh.tar.gz"
-
-LICENSE="GPL-3.0"
+S="${WORKDIR}/MarkdownURL-${PV}"
+LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
-S="${WORKDIR}/MarkdownURL-${PV}"
 
 IUSE="test"
 

@@ -17,6 +17,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 RDEPEND="
+	dev-python/regex[${PYTHON_USEDEP}]
 "
 DEPEND="
 	${RDEPEND}

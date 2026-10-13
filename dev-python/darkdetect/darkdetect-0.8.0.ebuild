@@ -17,5 +17,7 @@ LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
 
-RDEPEND=""
+RDEPEND="
+	dev-python/pillow[${PYTHON_USEDEP}]
+"
 DEPEND="${RDEPEND}"

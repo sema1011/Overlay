@@ -9,13 +9,12 @@ inherit cmake wxwidgets xdg
 DESCRIPTION="Internet radio player for Linux based on GStreamer"
 HOMEPAGE="https://github.com/ebruck/radiotray-ng"
 SRC_URI="https://github.com/ebruck/radiotray-ng/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+S="${WORKDIR}/${P}"
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="appindicator test"
 RESTRICT="!test? ( test )"
-
-S="${WORKDIR}/${P}"
 
 RDEPEND="
 	dev-cpp/glibmm

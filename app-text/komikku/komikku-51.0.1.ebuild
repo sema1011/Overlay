@@ -16,7 +16,6 @@ S="${WORKDIR}/komikku"
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
 DEPEND="
 	dev-libs/glib:2
@@ -32,7 +31,6 @@ RDEPEND="
 	>=net-libs/webkit-gtk-2.46:6[introspection]
 	>=app-arch/brotli-1.2.0
 	dev-python/beautifulsoup4
-	dev-python/colorthief
 	dev-python/dateparser
 	dev-python/EbookLib
 	dev-python/emoji

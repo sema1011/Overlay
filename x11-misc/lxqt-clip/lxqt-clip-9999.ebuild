@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake git-r3
+inherit cmake git-r3 desktop xdg
 
 DESCRIPTION="LXQt clipboard history applet"
 HOMEPAGE="https://github.com/lxqt/lxqt-clip"
@@ -12,8 +12,6 @@ EGIT_PROJECT="${PN}"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
-IUSE=""
 
 PATCHES=(
 	"${FILESDIR}"/cmake-remove-translate.patch
@@ -38,10 +36,8 @@ src_install() {
 	cmake_src_install
 
 	# Install desktop files (lxqt_translate_desktop removed by patch)
-	insinto /usr/share/applications
-	doins "${FILESDIR}"/lxqt-clip.desktop
-	insinto /etc/xdg/autostart
-	doins "${FILESDIR}"/lxqt-clip-autostart.desktop
+	domenu "${FILESDIR}"/lxqt-clip.desktop
+	newmenu "${FILESDIR}"/lxqt-clip-autostart.desktop
 }
 
 pkg_postinst() {

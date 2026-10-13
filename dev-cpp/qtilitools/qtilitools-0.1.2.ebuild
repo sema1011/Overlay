@@ -12,7 +12,6 @@ SRC_URI="https://github.com/qtilities/qtilitools/archive/${PV}.tar.gz -> ${P}.ta
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
 BDEPEND="
 	dev-build/cmake

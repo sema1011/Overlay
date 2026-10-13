@@ -12,7 +12,6 @@ SRC_URI="https://github.com/YACReader/yacreader/archive/refs/tags/${PV}.tar.gz -
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
 DEPEND="
 	dev-qt/qtbase:6=[gui,widgets,network,sql,opengl]

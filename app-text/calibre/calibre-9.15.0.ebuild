@@ -14,7 +14,7 @@ inherit edo toolchain-funcs python-single-r1 qmake-utils xdg
 
 DESCRIPTION="Ebook management application"
 HOMEPAGE="https://calibre-ebook.com/"
-SRC_URI="https://github.com/kovidgoyal/calibre/releases/download/v${PV}/${P}.tar.xz -> ${P}.tar.xz"
+SRC_URI="https://github.com/kovidgoyal/calibre/releases/download/v${PV}/${P}.tar.xz"
 
 LICENSE="
 	GPL-3+
@@ -25,7 +25,6 @@ LICENSE="
 	LGPL-3+
 	LGPL-2.1+
 	LGPL-2.1
-	BSL
 	MIT
 	Old-MIT
 	Apache-2.0

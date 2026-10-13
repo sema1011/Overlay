@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python3_{10..14} )
 
 DISTUTILS_USE_PEP517=hatchling
 
-inherit distutils-r1 xdg
+inherit desktop distutils-r1 xdg
 
 DESCRIPTION="Local MTProto proxy server for partial bypassing of Telegram loading"
 HOMEPAGE="https://github.com/Flowseal/tg-ws-proxy"
@@ -66,8 +66,7 @@ src_install() {
 
 	# Desktop file and icon for tray
 	if use tray; then
-		insinto /usr/share/applications
-		doins "${FILESDIR}"/tg-ws-proxy-tray-linux.desktop
+		domenu "${FILESDIR}"/tg-ws-proxy-tray-linux.desktop
 
 		# Install icons at all standard hicolor sizes
 		for size in 16 22 24 32 48 64 128 256; do

@@ -3,15 +3,21 @@
 
 EAPI=8
 
-inherit cmake git-r3
+inherit cmake
 
 DESCRIPTION="Keyboard layout switcher plugin for LXQt panel"
 HOMEPAGE="https://github.com/sema1011/plugin-kblayout"
-EGIT_REPO_URI="https://github.com/sema1011/plugin-kblayout.git"
+
+if [[ ${PV} == *9999* ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/sema1011/plugin-kblayout.git"
+else
+	SRC_URI="https://github.com/sema1011/plugin-kblayout/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
+fi
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="X wayland"
 
 DEPEND="
@@ -38,8 +44,4 @@ src_configure() {
 	)
 
 	cmake_src_configure
-}
-
-src_install() {
-	cmake_src_install
 }

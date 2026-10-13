@@ -19,7 +19,6 @@ KEYWORDS="~amd64"
 
 RDEPEND="
 	dev-python/pillow[${PYTHON_USEDEP}]
-	dev-libs/libayatana-appindicator
 "
 DEPEND="
 	${RDEPEND}

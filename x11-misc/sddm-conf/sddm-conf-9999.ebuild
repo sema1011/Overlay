@@ -12,8 +12,6 @@ EGIT_REPO_URI="https://github.com/qtilities/sddm-conf.git"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS=""
-IUSE=""
 
 BDEPEND="
 	>=dev-cpp/qtilitools-0.1.2

@@ -8,7 +8,7 @@ DISTUTILS_USE_PEP517=setuptools
 inherit distutils-r1 pypi
 
 DESCRIPTION="Ebook library which can handle EPUB2/EPUB3 and Kindle format"
-HOMEPAGE="https://github.com/aerkalov/ebooklib https://pypi.org/project/EbookLib/"
+HOMEPAGE="https://github.com/aerkalov/ebooklib https://pypi.org/project/ebooklib/"
 # sdist doesn't include conftest.py
 SRC_URI="https://github.com/aerkalov/ebooklib/archive/refs/tags/v${PV}.tar.gz -> ${P}.gh.tar.gz"
 

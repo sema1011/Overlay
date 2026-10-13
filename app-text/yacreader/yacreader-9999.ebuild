@@ -12,8 +12,6 @@ EGIT_BRANCH="develop"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS=""
-IUSE=""
 
 DEPEND="
 	dev-qt/qtbase:6=[gui,widgets,network,sql,opengl]

@@ -16,6 +16,8 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
+
 RDEPEND="
 	${PYTHON_DEPS}
 	$(python_gen_any_dep 'dev-python/pillow[${PYTHON_USEDEP}]')

@@ -8,7 +8,6 @@ PYTHON_REQ_USE="sqlite(+),ssl(+)"
 
 inherit git-r3 meson xdg
 
-PV="9999"
 EGIT_REPO_URI="https://codeberg.org/valos/Komikku.git"
 EGIT_BRANCH="main"
 EGIT_MAXDEPTH="1"
@@ -19,7 +18,6 @@ HOMEPAGE="https://apps.gnome.org/Komikku/"
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
 
 DEPEND="
 	dev-libs/glib:2
@@ -34,7 +32,6 @@ RDEPEND="
 	${DEPEND}
 	>=app-arch/brotli-1.2.0
 	dev-python/beautifulsoup4
-	dev-python/colorthief
 	dev-python/dateparser
 	dev-python/EbookLib
 	dev-python/emoji

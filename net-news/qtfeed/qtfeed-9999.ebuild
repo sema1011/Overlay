@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake git-r3
+inherit cmake git-r3 xdg-utils
 
 DESCRIPTION="Qt6 only RSS/Atom feed reader without HTML engine"
 HOMEPAGE="https://gitverse.ru/sema1011/QtFeed"
@@ -11,7 +11,6 @@ EGIT_REPO_URI="https://gitverse.ru/sema1011/QtFeed.git"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS=""
 IUSE="clang lto tests wayland"
 
 DEPEND="
@@ -23,9 +22,6 @@ DEPEND="
 	dev-db/sqlite:=
 "
 RDEPEND="${DEPEND}"
-BDEPEND="
-	dev-lang/python
-"
 
 src_configure() {
 	local mycmakeargs=(

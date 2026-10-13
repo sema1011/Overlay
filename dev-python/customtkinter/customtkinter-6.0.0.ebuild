@@ -12,12 +12,11 @@ inherit distutils-r1
 DESCRIPTION="CustomTkinter - Custom Widgets for Tkinter"
 HOMEPAGE="https://github.com/TomSchimansky/CustomTkinter"
 SRC_URI="https://github.com/TomSchimansky/CustomTkinter/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
-
+S="${WORKDIR}/CustomTkinter-${PV}"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 RESTRICT="test"
-S="${WORKDIR}/CustomTkinter-${PV}"
 
 RDEPEND="
 	dev-python/pillow[${PYTHON_USEDEP}]
