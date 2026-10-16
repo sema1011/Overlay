@@ -205,10 +205,11 @@ def main():
 
     added = 0
     updated = 0
+    removed = 0
     errors = 0
 
-    # Формируем результат — только последняя версия на пакет
-    result = dict(old_data)  # начинаем с существующих данных
+    # Формируем результат — только пакеты из overlay (удаляем отсутствующие)
+    result = {}
     for name in sorted(overlay_packages.keys()):
         versions = overlay_packages[name]
         # Оставляем только самую последнюю версию
@@ -216,11 +217,13 @@ def main():
         url = extract_repo_url(src_uris.get(name, {}).get(latest_ver, ""), name)
         entry = {"version": latest_ver, "url": url}
 
-        if name in result:
-            # Проверяем, изменились ли данные
-            if result[name].get("version") != latest_ver or result[name].get("url") != url:
+        if name in old_data:
+            if old_data[name].get("version") != latest_ver or old_data[name].get("url") != url:
                 result[name] = entry
                 updated += 1
+            else:
+                # Без изменений — копируем из old_data чтобы сохранить
+                result[name] = old_data[name]
         else:
             result[name] = entry
             added += 1
@@ -228,13 +231,19 @@ def main():
         if not url:
             errors += 1
 
+    # Считаем удалённые пакеты
+    for name in old_data:
+        if name not in overlay_packages:
+            removed += 1
+
     # Записываем только если были изменения
-    if added or updated:
+    if added or updated or removed:
         output = json.dumps(result, indent=2, ensure_ascii=False)
         PACKAGES_JSON.write_text(output + "\n", encoding="utf-8")
         print(f"Пакетов добавлено: {added}")
         print(f"Пакетов обновлено: {updated}")
-        print(f"С ошибкой: {errors}")
+        print(f"Пакетов удалено: {removed}")
+        print(f"С ошибкой (нет URL): {errors}")
     else:
         print("Изменений нет")
 

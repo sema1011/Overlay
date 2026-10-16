@@ -4,16 +4,20 @@
     "url": "https://github.com/aerkalov/ebooklib/releases"
   },
   "calibre": {
-    "version": "9.15.0",
+    "version": "9.16.0",
     "url": "https://github.com/kovidgoyal/calibre/releases"
   },
   "courlan": {
     "version": "1.4.0",
     "url": "https://github.com/adbar/courlan/releases"
   },
-  "crengine-ng": {
-    "version": "0.9.13",
-    "url": "https://gitlab.com/coolreader-ng/crengine-ng/-/releases"
+  "customtkinter": {
+    "version": "6.0.0",
+    "url": "https://github.com/TomSchimansky/CustomTkinter/releases"
+  },
+  "darkdetect": {
+    "version": "0.8.0",
+    "url": "https://github.com/albertosottile/darkdetect/releases"
   },
   "dateparser": {
     "version": "1.4.3",
@@ -43,50 +47,6 @@
     "version": "1.0.5",
     "url": "https://github.com/sema1011/MarkdownURL/releases"
   },
-  "podofo": {
-    "version": "1.1.2",
-    "url": "https://github.com/podofo/podofo/releases"
-  },
-  "qbittorrent": {
-    "version": "5.2.4",
-    "url": "https://github.com/qbittorrent/qBittorrent/releases"
-  },
-  "qmanga": {
-    "version": "5.0",
-    "url": "https://github.com/kernel1024/qmanga/releases"
-  },
-  "radiotray-ng": {
-    "version": "0.2.10.1",
-    "url": "https://github.com/ebruck/radiotray-ng/releases"
-  },
-  "rapydscript-ng": {
-    "version": "0.8.6",
-    "url": "https://github.com/kovidgoyal/rapydscript-ng/releases"
-  },
-  "tld": {
-    "version": "0.13.2",
-    "url": "https://pypi.org/project/tld"
-  },
-  "trafilatura": {
-    "version": "2.3.0",
-    "url": "https://github.com/adbar/trafilatura/releases"
-  },
-  "yacreader": {
-    "version": "10.3.2",
-    "url": "https://github.com/YACReader/yacreader/releases"
-  },
-  "qtilitools": {
-    "version": "0.1.2",
-    "url": "https://github.com/qtilities/qtilitools/releases"
-  },
-  "sddm-conf": {
-    "version": "0.4.1",
-    "url": "https://github.com/qtilities/sddm-conf/releases"
-  },
-  "xkb-switch": {
-    "version": "1.8.5",
-    "url": "https://github.com/sergei-mironov/xkb-switch/releases"
-  },
   "plugin-kblayout": {
     "version": "1.0.16",
     "url": "https://github.com/sema1011/plugin-kblayout/releases"
@@ -95,28 +55,48 @@
     "version": "1.0.2",
     "url": "https://github.com/sema1011/plugin-netstatus/releases"
   },
-  "notquiterss": {
-    "version": "0.95.3",
-    "url": "https://github.com/birdie-github/notquiterss/releases"
-  },
-  "qtsingleapplication": {
-    "version": "0",
-    "url": "https://github.com/qtproject/qt-solutions/releases"
-  },
-  "customtkinter": {
-    "version": "6.0.0",
-    "url": "https://github.com/TomSchimansky/CustomTkinter/releases"
-  },
-  "darkdetect": {
-    "version": "0.8.0",
-    "url": "https://github.com/albertosottile/darkdetect/releases"
+  "podofo": {
+    "version": "1.1.2",
+    "url": "https://github.com/podofo/podofo/releases"
   },
   "pystray": {
     "version": "0.19.5",
     "url": "https://github.com/moses-palmer/pystray/releases"
   },
+  "qbittorrent": {
+    "version": "5.2.4",
+    "url": "https://github.com/qbittorrent/qBittorrent/releases"
+  },
+  "qtilitools": {
+    "version": "0.1.2",
+    "url": "https://github.com/qtilities/qtilitools/releases"
+  },
+  "radiotray-ng": {
+    "version": "0.2.10.1",
+    "url": "https://github.com/ebruck/radiotray-ng/releases"
+  },
+  "rapydscript-ng": {
+    "version": "0.8.7",
+    "url": "https://github.com/kovidgoyal/rapydscript-ng/releases"
+  },
+  "sddm-conf": {
+    "version": "0.4.1",
+    "url": "https://github.com/qtilities/sddm-conf/releases"
+  },
   "tg-ws-proxy": {
-    "version": "1.11.1",
+    "version": "1.11.2",
     "url": "https://github.com/Flowseal/tg-ws-proxy/releases"
+  },
+  "tld": {
+    "version": "0.13.2",
+    "url": "https://pypi.org/project/tld"
+  },
+  "trafilatura": {
+    "version": "2.3.1",
+    "url": "https://github.com/adbar/trafilatura/releases"
+  },
+  "yacreader": {
+    "version": "10.4.0",
+    "url": "https://github.com/YACReader/yacreader/releases"
   }
 }
