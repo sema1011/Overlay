@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>sema19689@gmail.com</email>
+		<name>sema1011</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/obsidianmd/Obsidian/issues</bugs-to>
+		<remote-id type="github">obsidianmd/obsidian-releases</remote-id>
+	</upstream>
+	<use>
+		<flag name="appindicator">Install <pkg>dev-libs/libayatana-appindicator</pkg> symlink for system tray support</flag>
+		<flag name="wayland">Install a separate .desktop entry for launching Obsidian with native Wayland support enabled</flag>
+	</use>
+</pkgmetadata>
