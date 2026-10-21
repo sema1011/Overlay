@@ -20,6 +20,7 @@ DEPEND="
 	>=dev-qt/qttools-6:6
 	dev-libs/libxml2:=
 	dev-db/sqlite:=
+    dev-libs/libzip
 "
 RDEPEND="${DEPEND}"
 
