@@ -4,7 +4,7 @@
     "url": "https://github.com/aerkalov/ebooklib/releases"
   },
   "calibre": {
-    "version": "9.16.0",
+    "version": "9.17.0",
     "url": "https://github.com/kovidgoyal/calibre/releases"
   },
   "courlan": {
@@ -48,7 +48,7 @@
     "url": "https://github.com/sema1011/MarkdownURL/releases"
   },
   "obsidian": {
-    "version": "1.14.4",
+    "version": "1.14.5",
     "url": "https://github.com/obsidianmd/obsidian-releases/releases"
   },
   "plugin-kblayout": {
@@ -68,7 +68,7 @@
     "url": "https://github.com/moses-palmer/pystray/releases"
   },
   "qbittorrent": {
-    "version": "5.2.4",
+    "version": "5.3.0",
     "url": "https://github.com/qbittorrent/qBittorrent/releases"
   },
   "qtilitools": {
