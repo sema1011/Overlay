@@ -85,12 +85,32 @@ def extract_latest_github(url: str) -> str:
             except json.JSONDecodeError:
                 pass
 
-        # Fallback: HTML releases
-        html = curl_get(f"https://github.com/{owner}/{repo}/releases", timeout=10)
-        if html:
-            match = re.search(r'/releases/tag/(v?[\d.]+[a-zA-Z0-9._-]*)', html)
-            if match:
-                return match.group(1).lstrip("v")
+    # Fallback: HTML releases
+    html = curl_get(f"https://github.com/{owner}/{repo}/releases", timeout=10)
+    if html:
+        match = re.search(r'/releases/tag/(v?[\d.]+[a-zA-Z0-9._-]*)', html)
+        if match:
+            return match.group(1).lstrip("v")
+
+    # Fallback: git ls-remote (no auth, no rate-limit)
+    try:
+        result = subprocess.run(
+            ["git", "ls-remote", "--tags", "--refs",
+             f"https://github.com/{owner}/{repo}.git", "v*"],
+            capture_output=True, text=True, timeout=10
+        )
+        if result.returncode == 0 and result.stdout:
+            tags = []
+            for line in result.stdout.strip().split("\n"):
+                parts = line.split("\t")
+                if len(parts) == 2:
+                    ref = parts[1]  # refs/tags/vX.Y.Z
+                    tag_name = ref.replace("refs/tags/", "")
+                    tags.append(tag_name.lstrip("v"))
+            if tags:
+                return max(tags, key=lambda t: parse_version(t))
+    except (subprocess.TimeoutExpired, FileNotFoundError):
+        pass
 
     # Fallback: HTML tags
     html = curl_get(f"https://github.com/{owner}/{repo}/tags", timeout=10)
