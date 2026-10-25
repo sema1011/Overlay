@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>sema19689@gmail.com</email>
+		<name>sema1011</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">metabrainz/picard</remote-id>
+		<bugs-to>https://tickets.metabrainz.org/projects/PICARD/issues/</bugs-to>
+	</upstream>
+	<use>
+		<flag name="discid">Enable reading the ID of the inserted CD</flag>
+		<flag name="fingerprints">Enable calculation and lookup of AcoustID fingerprints</flag>
+		<flag name="markdown">Enable enhanced internal documentation (scripting, plugins, etc.)</flag>
+		<flag name="multimedia">Enable embedded audio player</flag>
+		<flag name="nls">Enable native language support via Qt translations</flag>
+	</use>
+</pkgmetadata>
