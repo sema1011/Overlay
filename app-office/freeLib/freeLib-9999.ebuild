@@ -15,7 +15,7 @@ EGIT_SUBMODULES=( '*' )
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="djvu"
+IUSE="djvu pdf"
 
 DEPEND="
 	dev-libs/quazip
@@ -26,8 +26,8 @@ DEPEND="
 	dev-qt/qtsvg:6
 	dev-qt/qtwebsockets:6
 	dev-qt/qthttpserver:6
-	dev-qt/qt5compat:6
 	djvu? ( app-text/djvu )
+	pdf? ( app-text/poppler[qt6] )
 "
 RDEPEND="${DEPEND}"
 BDEPEND="dev-qt/qttools:6"
