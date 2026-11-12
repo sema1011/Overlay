@@ -124,7 +124,7 @@ BDEPEND="$(python_gen_cond_dep '
 
 PATCHES=(
 	"${FILESDIR}/${PN}-9.15.0-jxr-test.patch"
-	"${FILESDIR}/${PN}-9.15.0-piper.patch"
+	"${FILESDIR}/${PN}-9.18.0-piper.patch"
 )
 
 src_prepare() {
