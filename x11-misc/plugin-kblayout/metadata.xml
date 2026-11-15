@@ -8,7 +8,7 @@
 		<name>sema1011</name>
 	</maintainer>
 	<use>
-		<flag name="x11">Enable X11 backend support via libxkbcommon-x11 and XCB</flag>
+		<flag name="X">Enable X11 backend support via libxkbcommon-x11 and XCB</flag>
 		<flag name="wayland">Enable Wayland backend support (KWin D-Bus, Sway, Hyprland)</flag>
 	</use>
 	<upstream>

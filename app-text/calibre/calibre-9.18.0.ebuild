@@ -10,7 +10,7 @@ EAPI=8
 PYTHON_COMPAT=( python3_14 )
 PYTHON_REQ_USE="sqlite,ssl"
 
-inherit edo toolchain-funcs python-single-r1 qmake-utils xdg
+inherit edo toolchain-funcs python-single-r1 qt-utils xdg
 
 DESCRIPTION="Ebook management application"
 HOMEPAGE="https://calibre-ebook.com/"
@@ -101,6 +101,7 @@ RDEPEND="${COMMON_DEPEND}
 	)
 	speech? (
 		$(python_gen_cond_dep 'app-accessibility/speech-dispatcher[python,${PYTHON_USEDEP}]')
+		app-accessibility/espeak-ng
 		dev-python/pyqt6[multimedia,speech]
 	)
 	system-mathjax? ( >=dev-libs/mathjax-3:= )
@@ -110,7 +111,8 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	test? ( $(python_gen_cond_dep '>=dev-python/chardet-3.0.3[${PYTHON_USEDEP}]') )
 "
- BDEPEND="$(python_gen_cond_dep '
+# sci-libs/onnxruntime is currently only available in ::guru
+BDEPEND="$(python_gen_cond_dep '
 		>=dev-python/pyqt-builder-1.10.3[${PYTHON_USEDEP}]
 		>=dev-python/sip-5[${PYTHON_USEDEP}]
 	')
@@ -121,7 +123,6 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/gtk-update-icon-cache
 	sci-libs/onnxruntime
 	system-mathjax? ( >=dev-lang/rapydscript-ng-0.8.5 )
-	speech? ( app-accessibility/espeak-ng )
 "
 
 PATCHES=(
@@ -158,7 +159,7 @@ src_compile() {
 	export PODOFO_LIB_DIR="${podofo_libdir}"
 	export PODOFO_LIB_NAME="${podofo_libdir}/libpodofo.so"
 	export LDFLAGS="${LDFLAGS} -Wl,-rpath,${EPREFIX}/usr/$(get_libdir)/podofo-1"
-	export QMAKE="$(qt6_get_bindir)/qmake"
+	export QMAKE="$(qt_get_bindir 6)/qmake"
 
 	edo ${EPYTHON} setup.py build
 

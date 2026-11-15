@@ -6,8 +6,8 @@
 		<name>sema1011</name>
 	</maintainer>
 	<upstream>
-		<bugs-to>https://github.com/richardpenman/tld/issues</bugs-to>
-		<remote-id type="github">richardpenman/tld</remote-id>
+		<bugs-to>https://github.com/barseghyanartur/tld/issues</bugs-to>
+		<remote-id type="github">barseghyanartur/tld</remote-id>
 		<remote-id type="pypi">tld</remote-id>
 	</upstream>
 </pkgmetadata>

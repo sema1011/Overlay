@@ -10,7 +10,7 @@ DISTUTILS_USE_PEP517=setuptools
 inherit distutils-r1 pypi
 
 DESCRIPTION="Simple and fast extraction of text from HTML documents"
-HOMEPAGE="https://github.com/adbar/justext"
+HOMEPAGE="https://github.com/miso-belica/jusText"
 
 LICENSE="BSD"
 SLOT="0"

@@ -10,7 +10,7 @@ EAPI=8
 PYTHON_COMPAT=( python3_14 )
 PYTHON_REQ_USE="sqlite,ssl"
 
-inherit edo toolchain-funcs python-single-r1 qmake-utils xdg
+inherit edo toolchain-funcs python-single-r1 qt-utils xdg
 
 DESCRIPTION="Ebook management application"
 HOMEPAGE="https://calibre-ebook.com/"
@@ -156,7 +156,7 @@ src_compile() {
 	export PODOFO_LIB_DIR="${podofo_libdir}"
 	export PODOFO_LIB_NAME="${podofo_libdir}/libpodofo.so"
 	export LDFLAGS="${LDFLAGS} -Wl,-rpath,${EPREFIX}/usr/$(get_libdir)/podofo-1"
-	export QMAKE="$(qt6_get_bindir)/qmake"
+	export QMAKE="$(qt_get_bindir 6)/qmake"
 
 	edo ${EPYTHON} setup.py build
 

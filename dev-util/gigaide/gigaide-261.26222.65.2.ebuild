@@ -3,21 +3,20 @@
 
 EAPI=8
 
-inherit desktop readme.gentoo-r1 toolchain-funcs wrapper xdg
+inherit desktop toolchain-funcs wrapper xdg
 
 DESCRIPTION="Integrated Development Environment for Java and Kotlin (IntelliJ-based)"
-HOMEPAGE="https://gigaide.ru/"
+HOMEPAGE="https://gitverse.ru/features/gigaide/"
 SRC_URI="https://gigaide.ru/downloadlast/gigaide-${PV}.tar.gz"
 
-LICENSE="GIGAIDE-EULA"
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="-* ~amd64"
 IUSE="+bundled-jdk"
 
 RDEPEND="
 	!bundled-jdk? (
-		>=dev-lang/java-21:21
-		>=dev-java/filesystem-classes-21:21
+		>=virtual/jdk-21:*
 	)
 	bundled-jdk? (
 		app-accessibility/at-spi2-core:2
@@ -124,7 +123,6 @@ src_install() {
 	make_wrapper "${PN}" "${DIR}/bin/idea.sh"
 	newicon "${S}/bin/idea.png" "${PN}.png"
 	make_desktop_entry "${PN}" "${PN}" "${PN}"
-
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d

@@ -10,7 +10,7 @@ DISTUTILS_USE_PEP517=setuptools
 inherit distutils-r1 pypi
 
 DESCRIPTION="Simple domain name parser"
-HOMEPAGE="https://github.com/richardpenman/tld"
+HOMEPAGE="https://github.com/barseghyanartur/tld"
 
 LICENSE="BSD"
 SLOT="0"

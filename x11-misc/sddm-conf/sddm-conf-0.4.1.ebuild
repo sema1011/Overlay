@@ -21,7 +21,7 @@ BDEPEND="
 RDEPEND="
 	dev-qt/qtbase:6[gui,network,widgets]
 	>=sys-auth/polkit-0.110:=[introspection]
-	x11-misc/sddm
+	gui-apps/sddm
 "
 DEPEND="${RDEPEND}"
 

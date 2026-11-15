@@ -3,9 +3,7 @@ app-portage
 app-text
 dev-cpp
 dev-lang
-dev-libs
 dev-python
-dev-qt
 games-util
 media-gfx
 media-radio

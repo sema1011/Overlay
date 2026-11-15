@@ -8,6 +8,5 @@
 	<upstream>
 		<bugs-to>https://codeberg.org/valos/Komikku/issues</bugs-to>
 		<remote-id type="codeberg">valos/Komikku</remote-id>
-		<remote-id type="github">valos/Komikku</remote-id>
 	</upstream>
 </pkgmetadata>
