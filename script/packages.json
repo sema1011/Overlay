@@ -1,10 +1,10 @@
 {
   "EbookLib": {
-    "version": "0.20",
+    "version": "0.21",
     "url": "https://github.com/aerkalov/ebooklib/releases"
   },
   "calibre": {
-    "version": "9.17.0",
+    "version": "9.18.0",
     "url": "https://github.com/kovidgoyal/calibre/releases"
   },
   "courlan": {
@@ -20,7 +20,7 @@
     "url": "https://github.com/albertosottile/darkdetect/releases"
   },
   "dateparser": {
-    "version": "1.4.3",
+    "version": "1.5.0",
     "url": "https://github.com/scrapinghub/dateparser/releases"
   },
   "flacon": {
@@ -29,7 +29,7 @@
   },
   "gigaide": {
     "version": "261.26222.65.2",
-    "url": ""
+    "url": "https://gitverse.ru/features/gigaide/desktop/download/"
   },
   "gtnh-daily-updater": {
     "version": "1.2.2",
@@ -44,7 +44,7 @@
     "url": "https://pypi.org/project/justext"
   },
   "komikku": {
-    "version": "51.1.0",
+    "version": "51.4.0",
     "url": "https://codeberg.org/valos/Komikku/releases"
   },
   "markdownurl": {
@@ -52,7 +52,7 @@
     "url": "https://github.com/sema1011/MarkdownURL/releases"
   },
   "obsidian": {
-    "version": "1.14.5",
+    "version": "1.15.1",
     "url": "https://github.com/obsidianmd/obsidian-releases/releases"
   },
   "picard": {
@@ -108,7 +108,7 @@
     "url": "https://github.com/adbar/trafilatura/releases"
   },
   "yacreader": {
-    "version": "10.4.0",
+    "version": "10.5.1",
     "url": "https://github.com/YACReader/yacreader/releases"
   }
 }

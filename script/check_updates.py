@@ -50,7 +50,7 @@ def parse_version(v: str):
 
 def curl_get(url: str, timeout: int = 10, headers: dict = None) -> str:
     """Загружает URL через curl."""
-    cmd = ["curl", "-s", "-m", str(timeout), "--compressed", "-o", "-", "-w", ""]
+    cmd = ["curl", "-sL", "-m", str(timeout), "--compressed", "-o", "-", "-w", ""]
     cmd.extend(["-H", f"User-Agent: {USER_AGENT}"])
     if headers:
         for k, v in headers.items():
@@ -227,6 +227,16 @@ def extract_latest_ftp(url: str) -> str:
     return ""
 
 
+def extract_latest_gigaide(url: str) -> str:
+    """GigaIDE: version list on the GitVerse download page."""
+    html = curl_get("https://gitverse.ru/features/gigaide/desktop/download/", timeout=15)
+    if html:
+        versions = re.findall(r'gigaide-([0-9][0-9.]*)\.tar\.gz', html)
+        if versions:
+            return max(versions, key=parse_version)
+    return ""
+
+
 def extract_latest_version(url: str) -> str:
     """Определяет тип URL и вызывает нужный парсер."""
     if not url:
@@ -244,6 +254,8 @@ def extract_latest_version(url: str) -> str:
         return extract_latest_sourceforge(url)
     if "ftp.gnu.org" in url or "download.savannah.gnu.org" in url:
         return extract_latest_ftp(url)
+    if "gigaide.ru" in url or "gitverse.ru/features/gigaide" in url:
+        return extract_latest_gigaide(url)
 
     return ""
 

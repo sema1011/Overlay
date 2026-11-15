@@ -186,6 +186,9 @@ def extract_repo_url(src_uri: str, pkg_name: str = "") -> str:
     match = re.search(r'mirror://nongnu/([^/]+)', src_uri)
     if match:
         return f"https://download.savannah.gnu.org/releases/{match.group(1)}/"
+    # GigaIDE
+    if re.search(r'gigaide\.ru/', src_uri):
+        return "https://gitverse.ru/features/gigaide/desktop/download/"
     return ""
 
 
