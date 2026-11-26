@@ -1,0 +1,10 @@
+--- a/launcher/FastFileIconProvider.h
++++ b/launcher/FastFileIconProvider.h
+@@ -19,6 +19,7 @@
+ #pragma once
+ 
+ #include <QFileIconProvider>
++#include <QFileInfo>
+ 
+ class FastFileIconProvider : public QFileIconProvider {
+    public:
